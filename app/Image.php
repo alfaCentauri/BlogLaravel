@@ -3,7 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-
+/**
+ * Clase Image; modelo de la tabla images. Contiene las relaciones entre tablas de la base de datos.
+ *
+ * @version 1.0.
+ */
 class Image extends Model
 {
     /**
@@ -20,4 +24,13 @@ class Image extends Model
     protected $fillable = [
         'name', 'article_id',
     ];
+    /**
+     * Relación inversa a la tabla de articles.
+     *
+     * @return  \Illuminate\Database\Eloquent\Relations\BelongsTo Regresa un objeto con la relación.
+     */
+    public function article()
+    {
+        return $this->belongsTo('App\Article');
+    }
 }

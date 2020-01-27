@@ -36,4 +36,20 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    /**
+     * Get the phone record associated with the user.
+     */
+    public function phone()
+    {
+        return $this->hasOne('App\Phone');
+    }
+    /**
+     * Relación de uno a muchos; de un usuario a muchos articulos.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany Regresa un objeto relacionado a articulos.
+     */
+    public function articles()
+    {
+        return $this->hasMany('App\Article');
+    }
 }

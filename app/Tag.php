@@ -20,4 +20,13 @@ class Tag extends Model
     protected $fillable = [
         'name',
     ];
+    /**
+     * Relación inversa de muchos a muchos; muchos tags (etiquetas) tienen muchos articulos.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany Regresa un objeto con la relación si existe.
+    */
+    public function articles()
+    {
+        return $this->belongsToMany('App\Article');
+    }
 }
