@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('home');
 /**
  * Expresiones regulares para filtar el parametro id.
  */
@@ -30,15 +30,17 @@ Route::get('/articulo', function () {
  * Prefijo a un grupo de rutas de los articulos. Cada ruta tiene un nombre único.
 */
 Route::prefix('articles')->group(function () {
-    Route::get('/view', function () {
-        return 'Lista de articulos.';
-    })->name('articlesList');
+    Route::get('/view', 'ArticleController@view')->name('articlesList');
     //
-    Route::get('/show/{id}', function ($id) {
-        return 'Detalles del articulo #'.$id;
-    })->name('articleShow');
+    Route::get('/show/{id?}', 'ArticleController@view')->name('articleShow')->where('id','[0-9]+');
     //
-    Route::get('/delete', function () {
+    Route::get('/delete/{id}', function ($id)  {
         return 'Borrado de articulos.';
-    })->name('articleDelete');
+    })->name('articleDelete')->where('id','[0-9]+');
+});
+/**
+ * Redireccionamiento.
+ */
+Route::get('dashboard', function () {
+    return redirect('home/dashboard');
 });
