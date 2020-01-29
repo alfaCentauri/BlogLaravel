@@ -6,6 +6,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
 use App\Article;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class ArticleController extends Controller
@@ -26,15 +27,22 @@ class ArticleController extends Controller
     */
     public function show($id=0)
     {
-        return view('articles.show',['article' =>Article::find($id)]);
+        $article = Article::find($id);
+        if (!is_null($article))
+            return view('articles.show',['article' =>$article]);
+        else
+            return 'Error articulo no encontrado.';
     }
     /**
      * Crea un articulo.
+     *
+     * @return RedirectResponse|Response|Redirect Regresa una repuesta con una plantilla ó regresa al home.
     */
     public function create()
     {
-        if (View::exists('articles.create')) {
-            //Existe
+        if (View::exists('articles.create'))
+        {
+            return response()->view('articles.create');
         }
         else
         {
@@ -44,7 +52,7 @@ class ArticleController extends Controller
     /**
      * Update the specified article.
      *
-     * @param  Request  $request Petición.
+     * @param  Request $request Petición.
      * @param  string  $id  Indice.
      *
      * @return Response|RedirectResponse Regresa una respuesta con una plantilla.

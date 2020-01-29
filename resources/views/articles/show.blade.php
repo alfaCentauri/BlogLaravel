@@ -8,7 +8,6 @@
     <title>{{ $article->title }}</title>
 </head>
 <body>
-@section('content')
     <div class="container">
         <div class="card mb-3">
             <div class="card-header">
@@ -28,10 +27,9 @@
                 Fecha: {{ $article->created_at }}
             </div>
             <div class="card-footer text-muted">
-                {{ $article->user->name }} |
+                Autor: {{ $article->user->name }}
             </div>
         </div>
     </div>
-@endsection
 </body>
 </html>

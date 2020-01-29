@@ -8,8 +8,12 @@
     <title>@yield('title', 'Bienvenido')</title>
 </head>
 <body>
+    <div class="page-wrapper"><!-- BEGIN Page Wrapper -->
+        <div class="page-inner"><!-- BEGIN Left Aside -->
     @include('admin.menu')
     @yield('content')
     @include('admin.footer')
+        </div><!-- END Left Aside -->
+    </div><!-- END Page Wrapper -->
 </body>
 </html>

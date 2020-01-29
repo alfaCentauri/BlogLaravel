@@ -32,7 +32,11 @@ Route::get('/articulo', function () {
 Route::prefix('articles')->group(function () {
     Route::get('/view', 'ArticleController@view')->name('articlesList');
     //
-    Route::get('/show/{id?}', 'ArticleController@view')->name('articleShow')->where('id','[0-9]+');
+    Route::get('/show/{id?}', 'ArticleController@show')->name('articleShow')->where('id','[0-9]+');
+    //
+    Route::get('/create', 'ArticleController@create')->name('articleCreate');
+    //
+    Route::get('/update/{id?}', 'ArticleController@update')->name('articleUpdate')->where('id','[0-9]+');
     //
     Route::get('/delete/{id}', function ($id)  {
         return 'Borrado de articulos.';
