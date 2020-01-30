@@ -40,14 +40,12 @@ class ArticleController extends Controller
     */
     public function create()
     {
-        if (View::exists('articles.create'))
-        {
-            return response()->view('articles.create');
-        }
-        else
-        {
-            return response()->redirectTo('home');
-        }
+        return response()->view('articles.create');
+
+//        else
+//        {
+//            return response()->redirectTo('home');
+//        }
     }
     /**
      * Update the specified article.

@@ -11,8 +11,10 @@
     <div class="page-wrapper"><!-- BEGIN Page Wrapper -->
         <div class="page-inner"><!-- BEGIN Left Aside -->
     @include('admin.menu')
-    @yield('content')
-    @include('admin.footer')
+            <aside class="">
+                @yield('content')
+            </aside>
+    @include('admin.pie')
         </div><!-- END Left Aside -->
     </div><!-- END Page Wrapper -->
 </body>
