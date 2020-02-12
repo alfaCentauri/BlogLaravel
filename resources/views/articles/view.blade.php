@@ -2,6 +2,15 @@
 @section('title')
     Lista de articulos
 @endsection
+@push('cssPropios')
+    <!-- Estilos para la seleccion de la lista-->
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2-bootstrap.css') }}">
+@endpush
+@push('scripts')
+    <!-- Listas de selección -->
+    <script src="{{ asset('js/select2.js') }}"></script>
+@endpush
 @section('content')
     <div class="container">
         @foreach($articles as $article)
@@ -17,7 +26,7 @@
                     <h6 class="card-subtitle text-muted">{{ $tag->name }}</h6>
                     @endforeach
                 </div>
-                <img src="{{ asset('img/articles/imagen1.png') }}" alt="Imagen Articulo" class="img-responsive">
+                <img src="{{ asset('img/articles/manzana.jpg') }}" alt="Imagen Articulo" class="img-responsive">
                 <div class="card-body">
                     {{ $article->content }} <br><hr>
                     Fecha: {{ $article->created_at }}

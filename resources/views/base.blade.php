@@ -5,19 +5,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Laravel, Framework, PHP">
     <meta name="description" content="Ejemplo de Laravel 6">
     <meta name="author" content="Ricardo Presilla">
     <meta name="theme-color" content="#563d7c">
     <title>@yield('title', 'Bienvenido')</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
+    @stack('cssPropios')
     <!-- JS -->
     <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js"></script>
+    <script src="{{ asset('js/feather.min.js') }}"></script>
+    <script src="{{ asset('js/Chart.min.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
+    @stack('scripts')
     <!-- Estilos base -->
     <style>
         .bd-placeholder-img {
