@@ -3,9 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Cviebrock\EloquentSluggable\Sluggable;
 
 class Article extends Model
 {
+    /**
+     * Clase Sluggable.
+     */
+    use Sluggable;
     /**
      * Nombre de la tabla ha usar.
      *
@@ -57,5 +62,18 @@ class Article extends Model
     public function tags()
     {
         return $this->belongsToMany('App\Tag')->withTimestamps();
+    }
+    /**
+     * Return the sluggable configuration array for this model.
+     *
+     * @return array
+     */
+    public function sluggable()
+    {
+        return [
+            'slug' => [
+                'source' => 'title'
+            ]
+        ];
     }
 }
