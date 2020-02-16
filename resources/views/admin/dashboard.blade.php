@@ -1,5 +1,3 @@
-<!doctype html>
-<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -12,16 +10,15 @@
     <title>@yield('title', 'Bienvenido')</title>
     <!-- CSS -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
-    @stack('cssPropios')
-    <!-- JS -->
+@stack('cssPropios')
+<!-- JS -->
     <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
     <script src="{{ asset('js/bootstrap.js') }}"></script>
     <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
     <script src="{{ asset('js/feather.min.js') }}"></script>
-    <script src="{{ asset('js/Chart.min.js') }}"></script>
     <script src="{{ asset('js/dashboard.js') }}"></script>
-    @stack('scripts')
-    <!-- Estilos base -->
+@stack('scripts')
+<!-- Estilos base -->
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -55,15 +52,15 @@
     <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 </head>
 <body>
-    @include('admin.menuPrincipal')
-    <div class="container-fluid">
-        <div class="row">
-            @include('admin.menuVertical')
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-                @yield('content')
-            </main>
-        </div>
+@include('admin.menuPrincipal')
+<div class="container-fluid">
+    <div class="row">
+        @include('admin.menuVertical')
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            @yield('content')
+        </main>
     </div>
-    @include('admin.pie')
+</div>
+@include('admin.pie')
 </body>
 </html>

@@ -34,18 +34,21 @@ class ArticleController extends Controller
             return 'Error articulo no encontrado.';
     }
     /**
-     * Crea un articulo.
+     * Crea un formulario para generar un nuevo articulo.
      *
      * @return RedirectResponse|Response|Redirect Regresa una repuesta con una plantilla ó regresa al home.
     */
     public function create()
     {
         return response()->view('articles.create');
+    }
+    /**
+     * Almacena en la base de datos el articulo creado.
+    */
+    public function store()
+    {
 
-//        else
-//        {
-//            return response()->redirectTo('home');
-//        }
+        return null;
     }
     /**
      * Update the specified article.
