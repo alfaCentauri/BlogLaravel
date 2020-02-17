@@ -14,7 +14,9 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return response()->view('admin.users.view', ['users' => User::all()]);
+        $users = User::orderby('name', 'ASC')->paginate(5);
+        return view('admin.users.view')->with('users',$users);
+//        return response()->view('admin.users.view', ['users' => User::all()]);
     }
 
     /**
@@ -44,7 +46,7 @@ class UsersController extends Controller
             $user->type = $request->type;
             $user->save();
         }
-        return response()->redirectToRoute('users.index'); //redirectTo('users.index');
+        return response()->redirectToRoute('users.index');
     }
 
     /**
