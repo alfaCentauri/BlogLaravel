@@ -18,7 +18,8 @@ class ArticleController extends Controller
     */
     public function view()
     {
-        return response()->view('articles/view', ['articles' => Article::all()]);
+        $articles = Article::all()->paginate(10);
+        return response()->view('articles/view', ['articles' => $articles]);
     }
     /**
      * Muestra un articulo con todos sus detalles.
@@ -44,11 +45,21 @@ class ArticleController extends Controller
     }
     /**
      * Almacena en la base de datos el articulo creado.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response Redirige la vista al listado de articulos.
     */
-    public function store()
+    public function store(Request $request)
     {
-
-        return null;
+        $article = new Article();
+        if ($request->has(['title', 'content', 'category_id']))
+        {
+            $article->title = $request->title;
+            $article->content = $request->texto;
+            $article->category_id = $request->category_id;
+            $article->save();
+        }
+        return response()->redirectToRoute('articlesList');
     }
     /**
      * Update the specified article.
@@ -68,7 +79,7 @@ class ArticleController extends Controller
         if ($request->isMethod('post')) {
             if ($request->has(['title', 'content'])) {
                 //guardar datos
-                return response()->redirectTo('articlesList');
+                return response()->redirectToRoute('articlesList');
             }
         }
         else

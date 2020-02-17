@@ -16,7 +16,7 @@ class UsersController extends Controller
     {
         $users = User::orderby('name', 'ASC')->paginate(5);
         return view('admin.users.view')->with('users',$users);
-//        return response()->view('admin.users.view', ['users' => User::all()]);
+//        return response()->view('admin.users.view', ['users' => $users]);
     }
 
     /**
