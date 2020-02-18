@@ -1,7 +1,10 @@
 <!-- Alertas -->
-<div class="alert alert-danger">
-    <div class="alert-title">
+<div class="card">
+    <div class="card-header text-center text-danger">
         {{ $title }}
     </div>
-    {{ $slot }}
+    <div class="card-body text-justify">
+        <h5 class="card-title">Atención:</h5>
+        <p class="card-text">{{ $slot }}</p>
+    </div>
 </div>

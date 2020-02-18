@@ -18,7 +18,7 @@ class ArticleController extends Controller
     */
     public function view()
     {
-        $articles = Article::all()->paginate(10);
+        $articles = Article::orderby('title', 'ASC')->paginate(4);
         return response()->view('articles/view', ['articles' => $articles]);
     }
     /**
@@ -72,19 +72,18 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
-        if (isset($article))
-        {
-            //Crear vista
-        }
-        if ($request->isMethod('post')) {
-            if ($request->has(['title', 'content'])) {
-                //guardar datos
-                return response()->redirectToRoute('articlesList');
-            }
-        }
-        else
-        {//Error
-            return response()->view('error', 505);
-        }
+        return response()->view('articles/update', ['article' => $article]);
+//        if ($request->has(['title', 'content'])) {
+//            $article->title = $request->title;
+//            $article->content = $request->texto;
+//            $article->category_id = $request->category_id;
+//            $article->update();
+//            return response()->redirectToRoute('articlesList');
+//        }
+//        else
+//        {//Error
+//            return response()->view('error', 505);
+//        }
+
     }
 }

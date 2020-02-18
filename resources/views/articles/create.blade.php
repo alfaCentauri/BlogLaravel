@@ -11,36 +11,24 @@
         </div>
         <form method="POST" action="{{ route('articleStore') }}">
             @csrf
-            <div class="row">
-                <div class="col-12">
-                    <label class="col-form-label" for="title">T&iacute;tulo del Art&iacute;culo</label>
-                </div>
+            <div class="form-group">
+                <label class="col-form-label" for="title">T&iacute;tulo del Art&iacute;culo</label>
+                <input id="title" name="title" type="text" class="form-control">
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <input id="title" name="title" type="text" class="form-control">
-                </div>
+            <div class="form-group">
+                <label class="" for="texto">Contenido:</label>
+                <textarea  id="texto" name="texto" class="form-control" rows="4" cols="60"
+                           maxlength="255" placeholder="Indique un contenido."></textarea>
             </div>
-            <div class="row">
-                <div class="col-12">
-                    <label class="" for="texto">Contenido:</label>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <textarea  id="texto" name="texto" class="form-control" rows="4" cols="60"
-                               maxlength="255" placeholder="Indique un contenido."></textarea>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12">
-                    <select id="category_id" name="category_id" class="form-control">
-                        <option value="1">Noticias</option>
-                        <option value="2">Noticias de &uacute;ltima hora</option>
-                        <option value="3">Ecolog&iacute;a</option>
-                        <option value="4">Deportes</option>
-                    </select>
-                </div>
+            <div class="form-group">
+                <label class="" for="texto">Categor&iacute;a:</label>
+                <select id="category_id" name="category_id" class="form-control">
+                    <option value="1">Noticias</option>
+                    <option value="2">Noticias de &uacute;ltima hora</option>
+                    <option value="3">Ecolog&iacute;a</option>
+                    <option value="4">Sucesos</option>
+                    <option value="5">Deportes</option>
+                </select>
             </div>
             <div class="row">
                 <div class="col-6">
