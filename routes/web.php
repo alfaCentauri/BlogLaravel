@@ -40,7 +40,9 @@ Route::get('/articulo', function () {
 */
 Route::prefix('articles')->group(function () {
     Route::get('/view', 'ArticleController@view')->name('articlesList');
-    //
+    /**
+     * Muestra un articulo indicado por su indice.
+    */
     Route::get('/show/{id?}', 'ArticleController@show')->name('articleShow')->where('id','[0-9]+');
     /**
      * Se dirije a la vista del formulario

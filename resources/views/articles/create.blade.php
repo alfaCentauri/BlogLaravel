@@ -1,4 +1,4 @@
-@extends('base');
+@extends('admin.dashboard');
 @section('title')
     Creando art&iacute;culo
 @endsection

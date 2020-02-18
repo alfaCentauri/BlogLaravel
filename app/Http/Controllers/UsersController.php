@@ -42,9 +42,10 @@ class UsersController extends Controller
         {
             $user->name = $request->name;
             $user->email = $request->email;
-            $user->password = $request->password;
+            $user->password = bcrypt($request->password);
             $user->type = $request->type;
             $user->save();
+            flash('El usuario '.$user->name.' ha sido registrado con exito.')->success();
         }
         return response()->redirectToRoute('users.index');
     }

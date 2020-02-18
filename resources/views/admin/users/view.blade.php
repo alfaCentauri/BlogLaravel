@@ -1,4 +1,4 @@
-@extends('base');
+@extends('admin.dashboard');
 @section('title')
     Listado de usuarios.
 @endsection
