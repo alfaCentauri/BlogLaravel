@@ -28,9 +28,13 @@
                 <img src="{{ asset('img/articles/manzana.jpg') }}" alt="Imagen Articulo" class="img-thumbnail">
                 <div class="card-body">
                     <h5 class="card-title">{{ $article->category->name }}</h5>
+                    <ul class="list-group list-group-flush">
                     @foreach( $article->tags as $tag)
-                        <h6 class="card-subtitle text-muted">{{ $tag->name }}</h6>
+                            <li class="list-group-item">
+                                <a href="" class="card-subtitle text-muted">{{ $tag->name }}</a>
+                            </li>
                     @endforeach
+                    </ul>
                     {{ $article->content }} <br><hr>
                     Fecha: {{ $article->created_at }}
                 </div>

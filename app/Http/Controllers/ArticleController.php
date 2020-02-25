@@ -52,13 +52,17 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-        if ($request->has(['title', 'content']))
+        if ($request->has(['title', 'content', 'category_id']))
         {
             $article->title = $request->title;
             $article->content = $request->texto;
             $article->category_id = $request->category_id;
             $article->save();
             flash('El articulo '.$article->title.' ha sido registrado con exito.')->success();
+        }
+        else
+        {
+            flash('El articulo '.$request->title.' no pudo ser registrado.')->error();
         }
         return response()->redirectToRoute('articlesList');
     }

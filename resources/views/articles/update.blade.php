@@ -11,6 +11,7 @@
         </div>
         <form method="POST" action="{{ route('articleStore') }}">
             @csrf
+            @method('PUT')
             <div class="row">
                 <div class="col-12">
                     <label class="col-form-label" for="title">T&iacute;tulo del Art&iacute;culo</label>

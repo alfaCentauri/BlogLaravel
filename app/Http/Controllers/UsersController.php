@@ -47,6 +47,10 @@ class UsersController extends Controller
             $user->save();
             flash('El usuario '.$user->name.' ha sido registrado con exito.')->success();
         }
+        else
+        {
+            flash('El usuario '.$request->name.' no pudo ser registrado.')->error();
+        }
         return response()->redirectToRoute('users.index');
     }
 
@@ -69,7 +73,8 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        return view('admin.users.edit')->with('user',$user);
     }
 
     /**
@@ -81,17 +86,33 @@ class UsersController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $user = User::find($id);
+        if ($request->has(['name', 'email', 'type']))
+        {
+            $user->name = $request->name;
+            $user->email = $request->email;
+            $user->type = $request->type;
+            $user->save();
+            flash('El usuario '.$user->name.' ha sido actualizado con exito.')->success();
+        }
+        else
+        {
+            flash('El usuario '.$request->name.' no pudo ser actualizado.')->error();
+        }
+        return response()->redirectToRoute('users.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse Regresa al panel de administración de usuarios.
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        flash('El usuario '.$user->name.' fue borrado.')->warning();
+        return response()->redirectToRoute('users.index');
     }
 }

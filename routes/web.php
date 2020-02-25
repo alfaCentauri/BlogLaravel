@@ -22,6 +22,11 @@ Route::prefix('admin')->group(function () {
      * Rutas para el CRUD.
      */
     Route::resource('users','UsersController');
+    /**
+     * Borrando usuario con metodo get
+     */
+    Route::get('/users/{id}/destroy', 'UsersController@destroy')
+        ->name('users.destroy')->where('id','[0-9]+');
 });
 /**
  * Expresiones regulares para filtar el parametro id.
@@ -55,7 +60,7 @@ Route::prefix('articles')->group(function () {
     //
     Route::put('/update/{id?}', 'ArticleController@update')->name('articleUpdate')->where('id','[0-9]+');
     //
-    Route::delete('/delete/{id}', function ($id)  {
+    Route::get('/delete/{id}', function ($id)  {
         return 'Borrado de articulos.';
     })->name('articleDelete')->where('id','[0-9]+');
 });
