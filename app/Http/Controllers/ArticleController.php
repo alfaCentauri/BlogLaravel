@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Response;
 use Illuminate\Http\Request;
@@ -67,6 +68,17 @@ class ArticleController extends Controller
         return response()->redirectToRoute('articlesList');
     }
     /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        $article = Article::find($id);
+        return view('articles.edit')->with('article',$article);
+    }
+    /**
      * Update the specified article.
      *
      * @param  Request $request Petición.
@@ -77,18 +89,16 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
-        return response()->view('articles/update', ['article' => $article]);
-//        if ($request->has(['title', 'content'])) {
-//            $article->title = $request->title;
-//            $article->content = $request->texto;
-//            $article->category_id = $request->category_id;
-//            $article->update();
-//            return response()->redirectToRoute('articlesList');
-//        }
-//        else
-//        {//Error
-//            return response()->view('error', 505);
-//        }
-
+        if ($request->has(['title', 'content'])) {
+            $article->title = $request->title;
+            $article->content = $request->texto;
+            $article->category_id = $request->category_id;
+            $article->update();
+            return response()->redirectToRoute('articlesList');
+        }
+        else
+        {//Error
+            return response()->view('error', 505);
+        }
     }
 }

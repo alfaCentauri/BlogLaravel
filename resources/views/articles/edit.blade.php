@@ -9,7 +9,7 @@
                 <h1>Modificando un art&iacute;culo.</h1>
             </div>
         </div>
-        <form method="POST" action="{{ route('articleStore') }}">
+        <form method="POST" action="{{ route('articleUpdate', $article) }}">
             @csrf
             @method('PUT')
             <div class="row">
@@ -19,7 +19,7 @@
             </div>
             <div class="row">
                 <div class="col-12">
-                    <input id="title" name="title" type="text" class="form-control">
+                    <input id="title" name="title" type="text" class="form-control" value="{{ $article->title }}">
                 </div>
             </div>
             <div class="row">
@@ -30,7 +30,9 @@
             <div class="row">
                 <div class="col-12">
                     <textarea  id="texto" name="texto" class="form-control" rows="4" cols="60"
-                               maxlength="255" placeholder="Indique un contenido."></textarea>
+                               maxlength="255" placeholder="Indique un contenido.">
+                        {{ $article->content }}
+                    </textarea>
                 </div>
             </div>
             <div class="row">
