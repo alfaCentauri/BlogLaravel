@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Support\Facades\Validator;
 
 class UsersController extends Controller
 {
@@ -79,7 +80,8 @@ class UsersController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resource in storage. Valida el contenido del formulario y genera el mensaje de error
+     * correspondiente.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -88,6 +90,22 @@ class UsersController extends Controller
     public function update(Request $request, $id)
     {
         $user = User::find($id);
+        $validator = Validator::make($request->all(), [
+            'name' => 'min:4|max:120|required',
+            'email' => 'min:4|max:120|required',
+        ],[
+            'name.required' => 'El nombre es requerido',
+            'name.min' => 'El mínimo para el nombre es de 4 caracteres.',
+            'name.max' => 'El máximo para el nombre es de 120 caracteres.',
+            'email.required'  => 'El correo es requerido',
+            'email.min' => 'El mínimo para el correo es de 4 caracteres.',
+            'email.max' => 'El máximo para el correo es de 255 caracteres.',
+        ]);
+        if ($validator->fails()) {
+            return response()->redirectToRoute('users.edit',['user' => $user])
+                ->withErrors($validator)
+                ->withInput();
+        }
         if ($request->has(['name', 'email', 'type']))
         {
             $user->name = $request->name;
