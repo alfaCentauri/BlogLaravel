@@ -29,4 +29,23 @@ class UserRequest extends FormRequest
             'password' => 'min:4|max:120|required',
         ];
     }
+    /**
+     * Get the error messages for the defined validation rules.
+     *
+     * @return array
+     */
+    public function messages()
+    {
+        return [
+            'name.required' => 'El nombre es requerido',
+            'name.min' => 'El mínimo para el nombre es de 4 caracteres.',
+            'name.max' => 'El máximo para el nombre es de 120 caracteres.',
+            'email.required'  => 'El correo es requerido',
+            'email.min' => 'El mínimo para el correo es de 4 caracteres.',
+            'email.max' => 'El máximo para el correo es de 255 caracteres.',
+            'password.required' => 'La clave es requerida',
+            'password.min' => 'El mínimo para la clave es de 4 caracteres.',
+            'password.max' => 'El máximo para la clave es de 120 caracteres.',
+        ];
+    }
 }
