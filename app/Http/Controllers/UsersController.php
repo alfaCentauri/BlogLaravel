@@ -91,12 +91,13 @@ class UsersController extends Controller
     {
         $user = User::find($id);
         $validator = Validator::make($request->all(), [
-            'name' => 'min:4|max:120|required',
+            'name' => 'min:4|max:120|required|alpha',
             'email' => 'min:4|max:120|required',
         ],[
             'name.required' => 'El nombre es requerido',
             'name.min' => 'El mínimo para el nombre es de 4 caracteres.',
             'name.max' => 'El máximo para el nombre es de 120 caracteres.',
+            'name.alpha' => 'El campo nombre solo puede contener letras.',
             'email.required'  => 'El correo es requerido',
             'email.min' => 'El mínimo para el correo es de 4 caracteres.',
             'email.max' => 'El máximo para el correo es de 255 caracteres.',
