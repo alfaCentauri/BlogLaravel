@@ -9,6 +9,7 @@
                 <h1>Creando un art&iacute;culo.</h1>
             </div>
         </div>
+        @include('components.errors')
         <form method="POST" action="{{ route('articleStore') }}">
             @csrf
             <div class="form-group">

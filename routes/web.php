@@ -19,7 +19,7 @@ Route::get('/', function () {
  */
 Route::prefix('admin')->group(function () {
     /**
-     * Rutas para el CRUD.
+     * Rutas para el CRUD del usuario.
      */
     Route::resource('users','UsersController');
     /**
@@ -27,6 +27,15 @@ Route::prefix('admin')->group(function () {
      */
     Route::get('/users/{id}/destroy', 'UsersController@destroy')
         ->name('users.destroy')->where('id','[0-9]+');
+    /**
+     * Rutas para el CRUD de las categorias.
+     */
+    Route::resource('categories', 'CategoriesController');
+    /**
+     * Borrando categoria con metodo get
+     */
+    Route::get('/categories/{id}/destroy','CategoriesController@destroy')
+        ->name('categories.destroy')->where('id','[0-9]+');
 });
 /**
  * Expresiones regulares para filtar el parametro id.

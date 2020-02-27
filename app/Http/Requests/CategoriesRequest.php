@@ -4,14 +4,14 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 /**
- * Clase UserRequest permite definir las reglas de validación de los campos del formulario crear usuario y personalizar
- * los mensajes de error.
+ * Clase CategoriesRequest permite definir las reglas de validación de los campos del formulario crear categoria y
+ * personalizar los mensajes de error.
  *
  * @author Ingeniero en Computación Ricardo Presilla <ricardopresilla@gmail.com>
  *
  * @version 1.0.
  */
-class UserRequest extends FormRequest
+class CategoriesRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,8 +32,6 @@ class UserRequest extends FormRequest
     {
         return [
             'name' => 'min:4|max:120|required',
-            'email' => 'min:4|max:255|required|unique:users',
-            'password' => 'min:4|max:120|required',
         ];
     }
     /**
@@ -47,12 +45,6 @@ class UserRequest extends FormRequest
             'name.required' => 'El nombre es requerido',
             'name.min' => 'El mínimo para el nombre es de 4 caracteres.',
             'name.max' => 'El máximo para el nombre es de 120 caracteres.',
-            'email.required'  => 'El correo es requerido',
-            'email.min' => 'El mínimo para el correo es de 4 caracteres.',
-            'email.max' => 'El máximo para el correo es de 255 caracteres.',
-            'password.required' => 'La clave es requerida',
-            'password.min' => 'El mínimo para la clave es de 4 caracteres.',
-            'password.max' => 'El máximo para la clave es de 120 caracteres.',
         ];
     }
 }
