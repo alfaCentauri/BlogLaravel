@@ -40,12 +40,12 @@ class ArticleController extends Controller
     /**
      * Crea un formulario para generar un nuevo articulo.
      *
-     * @return RedirectResponse|Response|Redirect Regresa una repuesta con una plantilla ó regresa al home.
+     * @return \Illuminate\Contracts\View\Factory|View
     */
     public function create()
     {
         $categories = Category::all();
-        return response()->view('articles.create')->with('categories', $categories);
+        return view('articles.create',['categories' => $categories]);
     }
     /**
      * Almacena en la base de datos el articulo creado.
@@ -56,7 +56,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-        if ($request->has(['title', 'content', 'category_id']))
+        if ($request->has(['title', 'category_id']))
         {
             $article->title = $request->title;
             $article->content = $request->texto;

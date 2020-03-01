@@ -16,21 +16,12 @@
                 {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Escriba un título', 'required']) !!}
             </div>
         <div class="form-group">
-            {!! Form::label('content', 'Contenido:') !!}
-            {!! Form::text('content', null, ['class' => 'form-control', 'placeholder' => 'Escriba un contenido', 'required']) !!}
-        </div>
-            <!--div-- class="form-group">
-                <label class="" for="texto">Contenido:</label>
-                <textarea  id="texto" name="texto" class="form-control" rows="4" cols="60"
-                           maxlength="255" placeholder="Indique un contenido."></textarea>
-            </div-->
-        <div class="form-group">
-            {!! Form::model($categories, []) !!}
-            {!! Form::close() !!}
+            {!! Form::label('texto', 'Contenido:') !!}
+            {!! Form::text('texto', null, ['class' => 'form-control', 'placeholder' => 'Escriba un contenido', 'required']) !!}
         </div>
         <div class="form-group">
             {!! Form::label('category_id', 'Categoría:') !!}
-            <select class="form-control" name="item_id">
+            <select class="form-control" name="category_id" id="category_id">
                 @foreach($categories as $category)
                     <option value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
