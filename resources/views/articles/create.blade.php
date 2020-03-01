@@ -10,35 +10,40 @@
             </div>
         </div>
         @include('components.errors')
-        <form method="POST" action="{{ route('articleStore') }}">
-            @csrf
+        {!! Form::open(['route' => 'articleStore', 'method' => 'POST']) !!}
             <div class="form-group">
-                <label class="col-form-label" for="title">T&iacute;tulo del Art&iacute;culo</label>
-                <input id="title" name="title" type="text" class="form-control">
+                {!! Form::label('title', 'Título del Artículo:') !!}
+                {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Escriba un título', 'required']) !!}
             </div>
-            <div class="form-group">
+        <div class="form-group">
+            {!! Form::label('content', 'Contenido:') !!}
+            {!! Form::text('content', null, ['class' => 'form-control', 'placeholder' => 'Escriba un contenido', 'required']) !!}
+        </div>
+            <!--div-- class="form-group">
                 <label class="" for="texto">Contenido:</label>
                 <textarea  id="texto" name="texto" class="form-control" rows="4" cols="60"
                            maxlength="255" placeholder="Indique un contenido."></textarea>
+            </div-->
+        <div class="form-group">
+            {!! Form::model($categories, []) !!}
+            {!! Form::close() !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('category_id', 'Categoría:') !!}
+            <select class="form-control" name="item_id">
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="row">
+            <div class="col-6">
+                {!! Form::submit('Aceptar', ['class' => 'btn btn-primary btn-block']) !!}
             </div>
-            <div class="form-group">
-                <label class="" for="texto">Categor&iacute;a:</label>
-                <select id="category_id" name="category_id" class="form-control">
-                    <option value="1">Noticias</option>
-                    <option value="2">Noticias de &uacute;ltima hora</option>
-                    <option value="3">Ecolog&iacute;a</option>
-                    <option value="4">Sucesos</option>
-                    <option value="5">Deportes</option>
-                </select>
+            <div class="col-6">
+                {!! Form::reset('Cancelar', ['class' => 'btn btn-danger btn-block']) !!}
             </div>
-            <div class="row">
-                <div class="col-6">
-                    <input type="submit" name="aceptar" value="Aceptar" class="btn btn-block btn-primary">
-                </div>
-                <div class="col-6">
-                    <input type="reset" name="cancelar" value="Cancelar" class="btn btn-block btn-danger">
-                </div>
-            </div>
-        </form>
+        </div>
+        {!! Form::close() !!}
     </div>
 @endsection
