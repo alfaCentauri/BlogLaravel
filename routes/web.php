@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('welcome');
 })->name('home');
 /**
+ * Ruta para el login.
+ */
+Route::get('admin/auth/login', 'Auth\LoginController@getLogin')->name('auth.login');
+/**
+ * Ruta para el login con el método post
+ */
+Route::post('admin/auth/login', 'Auth\LoginController@postLogin')->name('auth.login');
+/**
+ * Ruta para el logout
+ */
+Route::get('admin/auth/logout', 'Auth\LoginController@getLogout')->name('auth.logout');
+/**
  * Prefijo al grupo de rutas de administración de la aplicación.
  */
 Route::prefix('admin')->group(function () {
@@ -55,7 +67,7 @@ Route::get('/articulo', function () {
 Route::prefix('articles')->group(function () {
     Route::get('/view', 'ArticleController@view')->name('articlesList');
     /**
-     * Muestra un articulo indicado por su indice.
+     * Muestra un articulo indicado por su indice. Expresiones regulares para filtar el parametro id.
     */
     Route::get('/show/{id?}', 'ArticleController@show')->name('articleShow')->where('id','[0-9]+');
     /**

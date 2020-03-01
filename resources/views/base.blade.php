@@ -58,8 +58,7 @@
     @include('admin.menuPrincipal')
     <div class="container-fluid">
         <div class="row">
-            @include('admin.menuVertical')
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+            <main role="main" class="col-md-12 ml-sm-auto col-lg-12 px-4">
                 @yield('content')
             </main>
         </div>
