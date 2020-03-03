@@ -11,6 +11,13 @@ use Illuminate\Support\Facades\Validator;
 class CategoriesController extends Controller
 {
     /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Display a listing of the resource.
      *
      * @return Response Regresa una respuesta con una plantilla y un listado de las categorias.
