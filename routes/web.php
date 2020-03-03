@@ -17,15 +17,15 @@ Route::get('/', function () {
 /**
  * Ruta para el login.
  */
-Route::get('admin/auth/login', 'Auth\LoginController@getLogin')->name('auth.login');
+Route::get('admin/auth/login', 'Auth\LoginController@getLogin')->name('login');
 /**
  * Ruta para el login con el método post
  */
-Route::post('admin/auth/login', 'Auth\LoginController@postLogin')->name('auth.login');
+Route::post('admin/auth/login', 'Auth\LoginController@postLogin')->name('login');
 /**
  * Ruta para el logout
  */
-Route::get('admin/auth/logout', 'Auth\LoginController@getLogout')->name('auth.logout');
+Route::get('admin/auth/logout', 'Auth\LoginController@getLogout')->name('logout');
 /**
  * Prefijo al grupo de rutas de administración de la aplicación.
  */
@@ -48,18 +48,6 @@ Route::prefix('admin')->group(function () {
      */
     Route::get('/categories/{id}/destroy','CategoriesController@destroy')
         ->name('categories.destroy')->where('id','[0-9]+');
-});
-/**
- * Expresiones regulares para filtar el parametro id.
- */
-Route::get('user/{id}', function ($id) {
-    return 'Indice: '.$id;
-})->where('id', '[0-9]+');
-/**
- * Ruta de prueba.
- */
-Route::get('/articulo', function () {
-    return 'Hola mundo';
 });
 /**
  * Prefijo a un grupo de rutas de los articulos. Cada ruta tiene un nombre único.
@@ -88,6 +76,10 @@ Route::prefix('articles')->group(function () {
 /**
  * Redireccionamiento.
  */
-Route::get('dashboard', function () {
-    return redirect('home/dashboard');
+Route::get('/home', function () {
+    return redirect('/');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

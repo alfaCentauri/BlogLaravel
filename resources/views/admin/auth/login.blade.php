@@ -12,7 +12,7 @@
         @include('components.errors')
         <div class="row">
             <div class="offset-2 col-8 offset-2">
-                {!! Form::open(['route' => 'auth.login', 'method' => 'POST']) !!}
+                {!! Form::open(['route' => 'login', 'method' => 'POST']) !!}
                 <div class="form-group">
                     {!! Form::label('email', 'Correo electrónico:') !!}
                     {!! Form::email('email', null, ['class' => 'form-control', 'placeholder' => 'Escriba un email', 'required']) !!}
