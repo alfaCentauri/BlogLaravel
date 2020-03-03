@@ -1,16 +1,16 @@
 @extends('admin.dashboard');
 @section('title')
-    Listado de categorias.
+    Listado de Etiquetas.
 @endsection
 @push('cssPropios')
     <!--load all styles of icons -->
     <link rel="stylesheet" href="{{ asset('css/all.css') }} >
 @endpush
     @section('content')
-        <h2 class="text-center text-black-50">
-            Listado de categorias.
+        <h2 class="text-center text-black-50" >
+            Listado de Etiquetas.
         </h2>
-    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-success">Crear Categor&iacute;a</a>
+    <a href="{{ route('tags.create') }}" class="btn btn-sm btn-success">Crear Etiqueta</a>
     <div class="table-responsive mt-1">
         <table class="table table-striped table-sm">
             <thead>
@@ -21,15 +21,15 @@
             </tr>
             </thead>
             <tbody>
-            @foreach( $categories as $category)
+            @foreach( $tags as $tag)
                 <tr>
-                    <td>{{ $category->id }}</td>
-                    <td>{{ $category->name }}</td>
+                    <td>{{ $tag->id }}</td>
+                    <td>{{ $tag->name }}</td>
                     <td>
-                        <a href="{{ route('categories.edit', $category->id) }}" class="align-items-center btn btn-sm btn-danger">
+                        <a href="{{ route('tags.edit', $tag->id) }}" class="align-items-center btn btn-sm btn-danger">
                             <span class="fa fa-stop" aria-hidden="true">u</span>
                         </a>
-                        <a href="{{ route('categories.destroy', $category->id)  }}" onclick="alert('¿Esta seguro de eliminarla?');"
+                        <a href="{{ route('tags.destroy', $tag->id)  }}" onclick="alert('¿Esta seguro de eliminarla?');"
                            class="align-items-center btn btn-sm btn-warning">
                             <span class="fas fa-remove" aria-hidden="true">x</span>
                         </a>
@@ -39,7 +39,7 @@
             </tbody>
         </table>
         <div class="text-center">
-            {!! $categories->render() !!}
+            {!! $tags->render() !!}
         </div>
     </div>
     @endsection

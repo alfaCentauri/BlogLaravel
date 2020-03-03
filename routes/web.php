@@ -13,7 +13,7 @@
 
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 /**
  * Ruta para el login.
  */
@@ -48,6 +48,15 @@ Route::prefix('admin')->group(function () {
      */
     Route::get('/categories/{id}/destroy','CategoriesController@destroy')
         ->name('categories.destroy')->where('id','[0-9]+');
+    /**
+     * Rutas para el CRUD de los tags.
+     */
+    Route::resource('tags','TagsController');
+    /**
+     * Borrando un tag con metodo get
+     */
+    Route::get('/tags/{id}/destroy', 'TagsController@destroy')
+        ->name('tags.destroy')->where('id','[0-9]+');
 });
 /**
  * Prefijo a un grupo de rutas de los articulos. Cada ruta tiene un nombre único.
@@ -72,12 +81,6 @@ Route::prefix('articles')->group(function () {
     Route::get('/delete/{id}', function ($id)  {
         return 'Borrado de articulos.';
     })->name('articleDelete')->where('id','[0-9]+');
-});
-/**
- * Redireccionamiento.
- */
-Route::get('/home', function () {
-    return redirect('/');
 });
 
 Auth::routes();
