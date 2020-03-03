@@ -29,4 +29,14 @@ class Tag extends Model
     {
         return $this->belongsToMany('App\Article');
     }
+
+    /**
+     * Local Scopes: Scope a query to only include search tags
+     * @param $query
+     * @param $name
+     */
+    public function scopeSearch($query, $name)
+    {
+        return $query->where('name', 'LIKE', "%$name%");
+    }
 }

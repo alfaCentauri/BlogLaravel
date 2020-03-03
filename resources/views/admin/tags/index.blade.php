@@ -10,7 +10,16 @@
         <h2 class="text-center text-black-50" >
             Listado de Etiquetas.
         </h2>
-    <a href="{{ route('tags.create') }}" class="btn btn-sm btn-success">Crear Etiqueta</a>
+    <div class="row">
+        <div class="col-3">
+            <a href="{{ route('tags.create') }}" class="btn btn-sm btn-success">Crear Etiqueta</a>
+        </div>
+        <div class="offset-5 col-4">
+        @component('components.search')
+            {{ route('tags.index') }}
+        @endcomponent
+        </div>
+    </div>
     <div class="table-responsive mt-1">
         <table class="table table-striped table-sm">
             <thead>

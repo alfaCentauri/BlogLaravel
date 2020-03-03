@@ -31,7 +31,7 @@ class TagsRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'min:4|max:150|required|unique:tags',
+            'name' => 'min:2|max:150|required|unique:tags',
         ];
     }
     /**
@@ -43,7 +43,7 @@ class TagsRequest extends FormRequest
     {
         return [
             'name.required' => 'El nombre es requerido',
-            'name.min' => 'El mínimo para el nombre es de 4 caracteres.',
+            'name.min' => 'El mínimo para el nombre es de 2 caracteres.',
             'name.max' => 'El máximo para el nombre es de 150 caracteres.',
             'name.unique' => 'El nombre indicado se encuentra en uso.',
         ];

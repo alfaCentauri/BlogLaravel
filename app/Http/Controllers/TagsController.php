@@ -12,11 +12,12 @@ class TagsController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tags = Tag::orderby('name', 'ASC')->paginate(5);
+        $tags = Tag::search($request->search)->orderby('name', 'ASC')->paginate(5);
         return view('admin.tags.index')->with('tags',$tags);
     }
 
