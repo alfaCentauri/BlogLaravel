@@ -35,6 +35,10 @@
                     @endforeach
                 </select>
             </div>
+            <div class="form-group">
+                {!! Form::label('imagen', 'Archivo de Imagen:') !!}
+                {!! Form::file('imagen', null, ['class' => 'form-control', 'required']) !!}
+            </div>
         <div class="row">
             <div class="col-6">
                 {!! Form::submit('Agregar artículo', ['class' => 'btn btn-primary btn-block']) !!}

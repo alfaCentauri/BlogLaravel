@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Image;
 use App\Tag;
 use App\Article;
 use App\Category;
+use Illuminate\Http\Testing\File;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
@@ -23,8 +25,8 @@ class ArticleController extends Controller
     */
     public function view()
     {
-        $articles = Article::orderby('title', 'ASC')->paginate(4);
-        return response()->view('articles/view', ['articles' => $articles]);
+        $articles = Article::orderby('title', 'ASC')->paginate(6);
+        return response()->view('admin.articles.view', ['articles' => $articles]);
     }
     /**
      * Muestra un articulo con todos sus detalles.
@@ -35,7 +37,7 @@ class ArticleController extends Controller
     {
         $article = Article::find($id);
         if (!is_null($article))
-            return view('articles.show',['article' =>$article]);
+            return view('admin.articles.show',['article' =>$article]);
         else
             return 'Error articulo no encontrado.';
     }
@@ -48,7 +50,7 @@ class ArticleController extends Controller
     {
         $categories = Category::orderBy('name','ASC')->get(); //Category::pluck('name','id');
         $tags = Tag::orderBy('name','ASC')->get();
-        return view('articles.create',['categories' => $categories, 'tags' => $tags]);
+        return view('admin.articles.create',['categories' => $categories, 'tags' => $tags]);
     }
     /**
      * Almacena en la base de datos el articulo creado.
@@ -59,18 +61,37 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-        if ($request->has(['title', 'category_id']))
+        if ($request->has(['title', 'texto', 'category_id']))
         {
             $article->title = $request->title;
             $article->content = $request->texto;
             $article->user_id = Auth::id();
             $article->category_id = $request->category_id;
             $article->save();
-            flash('El articulo '.$article->title.' ha sido registrado con exito.')->success();
+            flash('El artículo '.$article->title.' ha sido registrado con exito.')->success();
+            $article->tags()->sync($request->tags);
+            if($request->file('imagen'))
+            {
+                $file = $request->file('imagen');
+                $ruta = public_path()."/img/articles/";
+                $name = 'blog_'.time().'.'.$file->getClientOriginalExtension();
+                $uploadSuccess = $file->move($ruta, $name);
+                if($uploadSuccess)
+                {
+                    $image = new Image();
+                    $image->name = $name;
+                    $image->article()->associate($article);
+                    $image->save();
+                }
+                else
+                {
+                    flash('La imagen del artículo '.$request->title.' no pudo ser agregada.')->error();
+                }
+            }
         }
         else
         {
-            flash('El articulo '.$request->title.' no pudo ser registrado.')->error();
+            flash('El artículo '.$request->title.' no pudo ser registrado.')->error();
         }
         return response()->redirectToRoute('articlesList');
     }
@@ -83,7 +104,7 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view('articles.edit')->with('article',$article);
+        return view('admin.articles.edit')->with('article',$article);
     }
     /**
      * Update the specified article.
