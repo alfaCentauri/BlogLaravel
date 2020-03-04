@@ -32,8 +32,10 @@ class Tag extends Model
 
     /**
      * Local Scopes: Scope a query to only include search tags
-     * @param $query
-     * @param $name
+     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param String $name Palabra a buscar.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
      */
     public function scopeSearch($query, $name)
     {

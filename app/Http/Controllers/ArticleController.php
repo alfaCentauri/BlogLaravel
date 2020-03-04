@@ -7,6 +7,7 @@ use App\Category;
 use Illuminate\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Redirect;
 /**
@@ -60,7 +61,7 @@ class ArticleController extends Controller
         {
             $article->title = $request->title;
             $article->content = $request->texto;
-            $article->user_id = 1;
+            $article->user_id = Auth::id();
             $article->category_id = $request->category_id;
             $article->save();
             flash('El articulo '.$article->title.' ha sido registrado con exito.')->success();
