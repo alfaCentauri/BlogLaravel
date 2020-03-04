@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Article;
 use App\Category;
 use Illuminate\View\View;
@@ -45,8 +46,9 @@ class ArticleController extends Controller
     */
     public function create()
     {
-        $categories = Category::all();
-        return view('articles.create',['categories' => $categories]);
+        $categories = Category::orderBy('name','ASC')->get(); //Category::pluck('name','id');
+        $tags = Tag::orderBy('name','ASC')->get();
+        return view('articles.create',['categories' => $categories, 'tags' => $tags]);
     }
     /**
      * Almacena en la base de datos el articulo creado.

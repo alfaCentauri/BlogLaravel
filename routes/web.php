@@ -57,30 +57,30 @@ Route::prefix('admin')->group(function () {
      */
     Route::get('/tags/{id}/destroy', 'TagsController@destroy')
         ->name('tags.destroy')->where('id','[0-9]+');
-});
-/**
- * Prefijo a un grupo de rutas de los articulos. Cada ruta tiene un nombre único.
-*/
-Route::prefix('articles')->group(function () {
-    Route::get('/view', 'ArticleController@view')->name('articlesList');
     /**
-     * Muestra un articulo indicado por su indice. Expresiones regulares para filtar el parametro id.
-    */
-    Route::get('/show/{id?}', 'ArticleController@show')->name('articleShow')->where('id','[0-9]+');
-    /**
-     * Se dirije a la vista del formulario
+     * Prefijo a un grupo de rutas de los articulos. Cada ruta tiene un nombre único.
      */
-    Route::get('/create', 'ArticleController@create')->name('articleCreate');
-    /**
-     * Guarda en la app el formulario
-     */
-    Route::post('/store', 'ArticleController@store')->name('articleStore');
-    //
-    Route::put('/update/{id?}', 'ArticleController@update')->name('articleUpdate')->where('id','[0-9]+');
-    //
-    Route::get('/delete/{id}', function ($id)  {
-        return 'Borrado de articulos.';
-    })->name('articleDelete')->where('id','[0-9]+');
+    Route::prefix('articles')->group(function () {
+        Route::get('/view', 'ArticleController@view')->name('articlesList');
+        /**
+         * Muestra un articulo indicado por su indice. Expresiones regulares para filtar el parametro id.
+         */
+        Route::get('/show/{id?}', 'ArticleController@show')->name('articleShow')->where('id','[0-9]+');
+        /**
+         * Se dirije a la vista del formulario
+         */
+        Route::get('/create', 'ArticleController@create')->name('articleCreate');
+        /**
+         * Guarda en la app el formulario
+         */
+        Route::post('/store', 'ArticleController@store')->name('articleStore');
+        //
+        Route::put('/update/{id?}', 'ArticleController@update')->name('articleUpdate')->where('id','[0-9]+');
+        //
+        Route::get('/delete/{id}', function ($id)  {
+            return 'Borrado de articulos.';
+        })->name('articleDelete')->where('id','[0-9]+');
+    });
 });
 
 Auth::routes();
