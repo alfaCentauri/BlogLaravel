@@ -29,11 +29,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('tags', 'Etiquetas:') !!}
-                <select class="form-control select2" name="tags" id="tags" required="required" multiple>
-                    @foreach($tags as $tag)
-                        <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                    @endforeach
-                </select>
+                {!! Form::select('tags[]', $tags, null, ['class' => 'form-control', 'multiple', 'required']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('imagen', 'Archivo de Imagen:') !!}

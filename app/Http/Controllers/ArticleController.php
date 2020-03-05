@@ -25,7 +25,7 @@ class ArticleController extends Controller
     */
     public function view()
     {
-        $articles = Article::orderby('title', 'ASC')->paginate(6);
+        $articles = Article::orderby('created_at', 'desc')->paginate(6);
         return response()->view('admin.articles.view', ['articles' => $articles]);
     }
     /**
@@ -48,8 +48,9 @@ class ArticleController extends Controller
     */
     public function create()
     {
-        $categories = Category::orderBy('name','ASC')->get(); //Category::pluck('name','id');
-        $tags = Tag::orderBy('name','ASC')->get();
+        $categories = Category::orderBy('name','ASC')->get();
+        $tags = Tag::pluck('name','id');
+//        $tags = Tag::orderBy('name','ASC')->get();
         return view('admin.articles.create',['categories' => $categories, 'tags' => $tags]);
     }
     /**
