@@ -62,7 +62,7 @@ class ArticleController extends Controller
     public function store(Request $request)
     {
         $article = new Article();
-        if ($request->has(['title', 'texto', 'category_id']))
+        if ($request->has(['title', 'texto', 'category_id', 'tags']))
         {
             $article->title = $request->title;
             $article->content = $request->texto;
@@ -71,23 +71,24 @@ class ArticleController extends Controller
             $article->save();
             flash('El artículo '.$article->title.' ha sido registrado con exito.')->success();
             $article->tags()->sync($request->tags);
-            if($request->file('imagen'))
+            if ($request->hasFile('imagen'))
             {
-                $file = $request->file('imagen');
-                $ruta = public_path()."/img/articles/";
-                $name = 'blog_'.time().'.'.$file->getClientOriginalExtension();
+                $file = $request->imagen;
+                $ruta = public_path() . "/img/articles/";
+                $name = 'blog_' . time() . '.' . $file->getClientOriginalExtension();
                 $uploadSuccess = $file->move($ruta, $name);
-                if($uploadSuccess)
-                {
+                if ($uploadSuccess) {
                     $image = new Image();
                     $image->name = $name;
                     $image->article()->associate($article);
                     $image->save();
+                } else {
+                    flash('La imagen del artículo ' . $request->title . ' no pudo ser agregada.')->error();
                 }
-                else
-                {
-                    flash('La imagen del artículo '.$request->title.' no pudo ser agregada.')->error();
-                }
+            }
+            else
+            {
+                flash('La imagen del artículo ' . $request->title . ' no pudo ser agregada.')->error();
             }
         }
         else

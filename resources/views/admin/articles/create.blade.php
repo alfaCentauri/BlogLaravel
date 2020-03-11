@@ -10,7 +10,7 @@
             </div>
         </div>
         @include('components.errors')
-        {!! Form::open(['route' => 'articleStore', 'method' => 'POST']) !!}
+        {!! Form::open(['route' => 'articleStore', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             <div class="form-group">
                 {!! Form::label('title', 'Título del Artículo:') !!}
                 {!! Form::text('title', null, ['class' => 'form-control', 'placeholder' => 'Escriba un título', 'required']) !!}

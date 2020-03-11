@@ -3,11 +3,13 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta name="keywords" content="HTML, CSS, XML, JavaScript, Laravel, Framework, PHP">
+    <meta name="description" content="Ejemplo de Laravel 6">
+    <meta name="author" content="Ricardo Presilla">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'Blog Template for Bootstrap')</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
