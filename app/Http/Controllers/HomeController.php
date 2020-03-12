@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Article;
 use Illuminate\Http\Request;
-
+/**
+ * Clase HomeController controla las acciones del módulo público.
+ */
 class HomeController extends Controller
 {
     /**
@@ -23,6 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $articles = Article::orderby('created_at', 'desc')->paginate(4);
+        return view('home', ['articles' => $articles]);
     }
 }
