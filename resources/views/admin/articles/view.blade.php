@@ -50,7 +50,13 @@
                             </li>
                     @endforeach
                     </ul>
-                    {{ $article->content }} <br><hr>
+                    @if( strlen($article->content) >= 60 )
+                        {{ substr($article->content, 0, 60) }}
+                        <a href="" class="text-decoration-none text-justify text-info">m&aacute;s</a>
+                    @else
+                        {{ $article->content }}
+                    @endif
+                        <br><hr>
                     Fecha: {{ $article->created_at }}
                 </div>
                 <div class="card-footer text-muted">
@@ -59,6 +65,8 @@
             </div>
         </div>
     @endforeach
-        {!! $articles->render() !!}
+        <div class="text-center">
+            {!! $articles->render() !!}
+        </div>
     </div>
 @endsection

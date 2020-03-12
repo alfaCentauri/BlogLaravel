@@ -21,11 +21,12 @@ class ArticleController extends Controller
     /**
      * Lista de articulos.
      *
+     * @param Request $request Contiene la petición
      * @return Response Regresa una respuesta con una plantilla.
-    */
-    public function view()
+     */
+    public function view(Request $request)
     {
-        $articles = Article::orderby('created_at', 'desc')->paginate(6);
+        $articles = Article::search($request->search)->orderby('created_at', 'desc')->paginate(6);
         return response()->view('admin.articles.view', ['articles' => $articles]);
     }
     /**
