@@ -17,13 +17,4 @@
         </div>
     </div>
     @endauth
-    <!--ul class="navbar-nav px-3">
-        <li class="nav-item text-nowrap">
-            @if (Route::has('logout'))
-                @auth
-                    <a class="nav-link" href="{{ route('logout') }}">Salir</a>
-                @endauth
-            @endif
-        </li>
-    </ul-->
 </nav>

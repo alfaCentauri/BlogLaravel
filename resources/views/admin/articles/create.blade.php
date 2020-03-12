@@ -1,7 +1,19 @@
-@extends('admin.dashboard');
+@extends('admin.dashboard')
 @section('title')
     Creando art&iacute;culo
 @endsection
+@push('cssPropios')
+    <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
+@endpush
+@push('scripts')
+    <script src="{{ asset('js/chosen.jquery.js') }}"></script>
+    <script>
+        $(".chosen-select").chosen({
+            placeholder_text_multiple: "Seleccione una o más opciones",
+            no_results_text: "Oops, no hay datos!",
+        });
+    </script>
+@endpush
 @section('content')
     <div class="container">
         <div class="row">
@@ -29,7 +41,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('tags', 'Etiquetas:') !!}
-                {!! Form::select('tags[]', $tags, null, ['class' => 'form-control', 'multiple', 'required']) !!}
+                {!! Form::select('tags[]', $tags, null, ['class' => 'form-control chosen-select', 'multiple', 'required']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('imagen', 'Archivo de Imagen:') !!}

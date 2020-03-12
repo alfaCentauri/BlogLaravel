@@ -1,4 +1,4 @@
-@extends('admin.dashboard');
+@extends('admin.dashboard')
 @section('title')
     Modificando la etiqueta: {{ $tag->name }}.
 @endsection

@@ -1,4 +1,4 @@
-@extends('admin.dashboard');
+@extends('admin.dashboard')
 @section('title')
     Listado de Etiquetas.
 @endsection

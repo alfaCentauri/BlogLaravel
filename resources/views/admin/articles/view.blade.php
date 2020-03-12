@@ -1,4 +1,4 @@
-@extends('admin.dashboard');
+@extends('admin.dashboard')
 @section('title')
     Lista de Art&iacute;culos
 @endsection
@@ -25,7 +25,13 @@
                         {{ $article->title }}
                     </div>
                 </div>
-                <img src="{{ asset('img/articles/manzana.jpg') }}" alt="Imagen Articulo" class="img-thumbnail">
+                @if( count($article->images) < 1)
+                    <img src="{{ asset('img/articles/manzana.jpg') }}" alt="Imagen Articulo" class="img-thumbnail">
+                @else
+                    @foreach($article->images as $image)
+                        <img src="{{ asset('img/articles/'.$image->name) }}" alt="{{ $image->name }}" class="img-thumbnail">
+                    @endforeach
+                @endif
                 <div class="card-body">
                     <h5 class="card-title">{{ $article->category->name }}</h5>
                     <ul class="list-group list-group-flush">

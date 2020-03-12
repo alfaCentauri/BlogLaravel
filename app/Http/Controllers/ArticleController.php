@@ -88,7 +88,7 @@ class ArticleController extends Controller
             }
             else
             {
-                flash('La imagen del artículo ' . $request->title . ' no pudo ser agregada.')->error();
+                flash('La imagen del artículo ' . $request->title . ' no existe.')->error();
             }
         }
         else

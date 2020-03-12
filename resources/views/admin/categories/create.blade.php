@@ -1,4 +1,4 @@
-@extends('admin.dashboard');
+@extends('admin.dashboard')
 @section('title')
     Creando una categoria
 @endsection
