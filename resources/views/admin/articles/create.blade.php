@@ -3,14 +3,23 @@
     Creando art&iacute;culo
 @endsection
 @push('cssPropios')
+    <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/select2-bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
 @endpush
 @push('scripts')
+    <!-- Listas de selección -->
+    <script src="{{ asset('js/select2.js') }}"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}"></script>
     <script>
-        $(".chosen-select").chosen({
-            placeholder_text_multiple: "Seleccione una o más opciones",
-            no_results_text: "Oops, no hay datos!",
+        $(document).ready(function() {
+            $("#category_id").select2({
+                language: "es",
+            });
+            $(".chosen-select").chosen({
+                placeholder_text_multiple: "Seleccione una o más opciones",
+                no_results_text: "Oops, no hay datos!",
+            });
         });
     </script>
 @endpush
@@ -29,7 +38,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('category_id', 'Categoría:') !!}
-                <select class="form-control select2" name="category_id" id="category_id" required="required">
+                <select class="form-control select2-choice" name="category_id" id="category_id" required="required" data-placeholder="...">
                     @foreach($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -40,8 +49,9 @@
                 {!! Form::textarea('texto', null, ['class' => 'form-control', 'placeholder' => 'Escriba un contenido', 'required']) !!}
             </div>
             <div class="form-group">
-                {!! Form::label('tags', 'Etiquetas:') !!}
-                {!! Form::select('tags[]', $tags, null, ['class' => 'form-control chosen-select', 'multiple', 'required']) !!}
+                {!! Form::label('tags[]', 'Etiquetas:') !!}
+                {!! Form::select('tags[]', $tags, null, ['class' => 'form-control chosen-select', 'multiple', 'required',
+                    'data-placeholder'=> "..."]) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('imagen', 'Archivo de Imagen:') !!}

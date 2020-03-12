@@ -15,7 +15,16 @@
     <h2 class="text-center text-black-50">
         Lista de Art&iacute;culos.
     </h2>
-    <a href="{{ route('articleCreate') }}" class="btn btn-sm btn-success">Crear Art&iacute;culo</a>
+    <div class="row">
+        <div class="col-3">
+            <a href="{{ route('articleCreate') }}" class="btn btn-sm btn-success">Crear Art&iacute;culo</a>
+        </div>
+        <div class="offset-5 col-4">
+            @component('components.search')
+                {{ route('articlesList') }}
+            @endcomponent
+        </div>
+    </div>
     <div class="row mt-2">
     @foreach($articles as $article)
         <div class="col-sm-4">
