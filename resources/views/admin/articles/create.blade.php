@@ -6,11 +6,15 @@
     <link rel="stylesheet" href="{{ asset('css/select2.css') }}">
     <link rel="stylesheet" href="{{ asset('css/select2-bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('css/chosen.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/trumbowyg.css') }}">
 @endpush
 @push('scripts')
     <!-- Listas de selección -->
     <script src="{{ asset('js/select2.js') }}"></script>
     <script src="{{ asset('js/chosen.jquery.js') }}"></script>
+    <!-- Editor de texto -->
+    <script src="{{ asset('js/trumbowyg.js') }}"></script>
+    <script src="{{ asset('js/trumbowyg_es.js') }}"></script>
     <script>
         $(document).ready(function() {
             $("#category_id").select2({
@@ -19,6 +23,10 @@
             $(".chosen-select").chosen({
                 placeholder_text_multiple: "Seleccione una o más opciones",
                 no_results_text: "Oops, no hay datos!",
+            });
+            $('textarea').trumbowyg({
+                lang: 'es',
+                btns: ['strong', 'em', 'del']
             });
         });
     </script>
