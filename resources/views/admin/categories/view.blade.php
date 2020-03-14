@@ -4,13 +4,22 @@
 @endsection
 @push('cssPropios')
     <!--load all styles of icons -->
-    <link rel="stylesheet" href="{{ asset('css/all.css') }} >
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}" >
 @endpush
     @section('content')
-        <h2 class="text-center text-black-50">
-            Listado de categorias.
-        </h2>
-    <a href="{{ route('categories.create') }}" class="btn btn-sm btn-success">Crear Categor&iacute;a</a>
+    <h2 class="text-center text-black-50">
+        Listado de categorias.
+    </h2>
+    <div class="row">
+        <div class="col-3">
+            <a href="{{ route('categories.create') }}" class="btn btn-sm btn-success">Crear Categor&iacute;a</a>
+        </div>
+        <div class="offset-5 col-4">
+            @component('components.search')
+                {{ route('tags.index') }}
+            @endcomponent
+        </div>
+    </div>
     <div class="table-responsive mt-1">
         <table class="table table-striped table-sm">
             <thead>

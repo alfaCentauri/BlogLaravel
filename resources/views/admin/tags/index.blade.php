@@ -4,7 +4,7 @@
 @endsection
 @push('cssPropios')
     <!--load all styles of icons -->
-    <link rel="stylesheet" href="{{ asset('css/all.css') }} >
+    <link rel="stylesheet" href="{{ asset('css/all.css') }}" >
 @endpush
     @section('content')
         <h2 class="text-center text-black-50" >
