@@ -67,7 +67,7 @@
             </div>
             <div class="form-group">
                 {!! Form::label('texto', 'Contenido:') !!}
-                {!! Form::textarea('texto', null, ['class' => 'form-control', 'placeholder' => 'Escriba un contenido', 'required']) !!}
+                {!! Form::textarea('texto', null, ['class' => 'form-control textarea-content', 'placeholder' => 'Escriba un contenido', 'required']) !!}
             </div>
             <div class="form-group">
                 {!! Form::label('tags[]', 'Etiquetas:') !!}

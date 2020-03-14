@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use App\Http\Requests\ArticlesRequest;
 use Illuminate\Support\Facades\Redirect;
 /**
  * Clase ArticleController controla las acciones del modulo de articulos.
@@ -57,10 +58,10 @@ class ArticleController extends Controller
     /**
      * Almacena en la base de datos el articulo creado.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  ArticlesRequest  $request
      * @return \Illuminate\Http\Response Redirige la vista al listado de articulos.
     */
-    public function store(Request $request)
+    public function store(ArticlesRequest $request)
     {
         $article = new Article();
         if ($request->has(['title', 'texto', 'category_id', 'tags']))

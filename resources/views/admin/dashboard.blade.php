@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     @stack('cssPropios')
     <!-- JS -->
-        <script src="{{ asset('js/jquery.js') }}"></script>
+        <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
         <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
