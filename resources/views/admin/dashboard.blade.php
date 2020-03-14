@@ -15,7 +15,6 @@
     @stack('cssPropios')
     <!-- JS -->
         <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>
-        <script src="{{ asset('js/jquery-3.4.1.slim.min.js') }}"></script>
         <script src="{{ asset('js/bootstrap.js') }}"></script>
         <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
         <script src="{{ asset('js/feather.min.js') }}"></script>

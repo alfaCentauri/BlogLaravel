@@ -33,7 +33,7 @@ class ArticlesRequest extends FormRequest
         return [
             'title' => 'min:8|max:250|required|unique:articles',
             'category_id' => 'required',
-            'content' => 'min:50|required',
+            'texto' => 'min:50|required',
             'imagen' => 'required',
         ];
     }
@@ -49,8 +49,8 @@ class ArticlesRequest extends FormRequest
             'title.min' => 'El mínimo para el título es de 8 caracteres.',
             'title.max' => 'El máximo para el título es de 250 caracteres.',
             'category_id.required' => 'La categoria es requerida',
-            'content.min' => 'El mínimo para el contenido es de 50 caracteres.',
-            'content.required' => 'El contenido es requerido',
+            'texto.min' => 'El mínimo para el contenido es de 50 caracteres.',
+            'texto.required' => 'El contenido es requerido',
             'imagen.required' => 'El archivo de la imagen es requerida',
         ];
     }
