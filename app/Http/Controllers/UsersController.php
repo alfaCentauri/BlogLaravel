@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Requests\UserRequest;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,11 +21,12 @@ class UsersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response Regresa una respuesta con una plantilla y un listado de los usuarios.
+     * @param Request $request Contiene la petición.
+     * @return Response Regresa una respuesta con una plantilla y un listado de los usuarios.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::orderby('name', 'ASC')->paginate(5);
+        $users = User::search($request->search)->orderby('name', 'ASC')->paginate(5);
         return view('admin.users.view')->with('users',$users);
 //        return response()->view('admin.users.view', ['users' => $users]);
     }

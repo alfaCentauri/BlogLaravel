@@ -20,11 +20,12 @@ class CategoriesController extends Controller
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request Contiene la petición.
      * @return Response Regresa una respuesta con una plantilla y un listado de las categorias.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $categories = Category::orderby('name', 'ASC')->paginate(8);
+        $categories = Category::search($request->search)->orderby('name', 'ASC')->paginate(6);
         return view('admin.categories.view')->with('categories',$categories);
     }
     /**

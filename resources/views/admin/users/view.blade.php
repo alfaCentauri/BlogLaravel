@@ -10,7 +10,16 @@
     <h2 class="text-center text-black-50">
         Usuarios del Sistema.
     </h2>
-    <a href="{{ route('users.create') }}" class="btn btn-sm btn-success">Crear Usuario</a>
+    <div class="row">
+        <div class="col-3">
+            <a href="{{ route('users.create') }}" class="btn btn-sm btn-success">Crear Usuario</a>
+        </div>
+        <div class="offset-5 col-4">
+            @component('components.search')
+                {{ route('users.index') }}
+            @endcomponent
+        </div>
+    </div>
     <div class="table-responsive mt-1">
         <table class="table table-striped table-sm">
             <thead>

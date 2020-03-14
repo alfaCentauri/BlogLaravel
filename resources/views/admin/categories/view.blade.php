@@ -16,7 +16,7 @@
         </div>
         <div class="offset-5 col-4">
             @component('components.search')
-                {{ route('tags.index') }}
+                {{ route('categories.index') }}
             @endcomponent
         </div>
     </div>

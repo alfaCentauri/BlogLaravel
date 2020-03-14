@@ -29,4 +29,15 @@ class Category extends Model
     {
         return $this->hasMany('App\Article');
     }
+    /**
+     * Local Scopes: Scope a query to only include search category
+     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param String $name Palabra a buscar.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $name)
+    {
+        return $query->where('name', 'LIKE', "%$name%");
+    }
 }
