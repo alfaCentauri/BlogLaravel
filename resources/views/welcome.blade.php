@@ -21,6 +21,7 @@
         <script src="{{ asset('js/bootstrap.bundle.js') }}"></script>
         <script src="{{ asset('js/popper.min.js') }}"></script>
         <script src="{{ asset('js/holder.min.js') }}"></script>
+        <script src="{{ asset('js/conversor.js') }}"></script>
         @stack('scripts')
     </head>
     <body>
@@ -59,7 +60,8 @@
         <!-- Fin Banner -->
         <!-- Sección post card -->
         <div class="row mb-2">
-            <div class="col-md-6">
+            @include('publico.articlesCard')
+            <!--div class="col-md-6">
                 <div class="card flex-md-row mb-4 box-shadow h-md-250">
                     <div class="card-body d-flex flex-column align-items-start">
                         <strong class="d-inline-block mb-2 text-primary">World</strong>
@@ -86,7 +88,7 @@
                     </div>
                     <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="Card image cap">
                 </div>
-            </div>
+            </div-->
         </div>
     </div>
     <!-- Fin Sección post card -->
@@ -94,10 +96,10 @@
         <div class="row">
             <div class="col-md-8 blog-main">
                 <h3 class="pb-3 mb-4 font-italic border-bottom">
-                    From the Firehose
+                    Listado de art&iacute;culos
                 </h3>
-
-                <div class="blog-post">
+                @include('publico.articleDetail')
+                <!--div class="blog-post">
                     <h2 class="blog-post-title">Sample blog post</h2>
                     <p class="blog-post-meta">January 1, 2020 by <a href="#">Mark</a></p>
 
@@ -128,9 +130,10 @@
                         <li>Maecenas sed diam eget risus varius blandit sit amet non magna.</li>
                     </ol>
                     <p>Cras mattis consectetur purus sit amet fermentum. Sed posuere consectetur est at lobortis.</p>
-                </div><!-- /.blog-post -->
+                </div-->
+                <!-- /.blog-post -->
 
-                <div class="blog-post">
+                <!-- div class="blog-post">
                     <h2 class="blog-post-title">Another blog post</h2>
                     <p class="blog-post-meta">December 23, 2019 by <a href="#">Jacob</a></p>
 
@@ -140,9 +143,10 @@
                     </blockquote>
                     <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
                     <p>Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget lacinia odio sem nec elit. Morbi leo risus, porta ac consectetur ac, vestibulum at eros.</p>
-                </div><!-- /.blog-post -->
+                </div-->
+                <!-- /.blog-post -->
 
-                <div class="blog-post">
+                <!--div class="blog-post">
                     <h2 class="blog-post-title">New feature</h2>
                     <p class="blog-post-meta">December 14, 2019 by <a href="#">Chris</a></p>
 
@@ -154,11 +158,12 @@
                     </ul>
                     <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
                     <p>Donec ullamcorper nulla non metus auctor fringilla. Nulla vitae elit libero, a pharetra augue.</p>
-                </div><!-- /.blog-post -->
+                </div-->
+                <!-- /.blog-post -->
 
                 <nav class="blog-pagination">
-                    <a class="btn btn-outline-primary" href="#">Older</a>
-                    <a class="btn btn-outline-secondary disabled" href="#">Newer</a>
+                    <a class="btn btn-outline-primary" href="#">Anteriores</a>
+                    <a class="btn btn-outline-secondary disabled" href="#">Nuevos</a>
                 </nav>
 
             </div><!-- /.blog-main -->
@@ -172,11 +177,10 @@
                 @include('publico.menuArchivos')
                 <!-- Fin Menu archivos -->
                 <div class="p-3">
-                    <h4 class="font-italic">Elsewhere</h4>
+                    <h4 class="font-italic">En otra parte</h4>
                     <ol class="list-unstyled">
-                        <li><a href="#">GitHub</a></li>
-                        <li><a href="#">Twitter</a></li>
-                        <li><a href="#">Facebook</a></li>
+                        <li><a href="https://github.com/alfaCentauri">GitHub</a></li>
+                        <li><a href="#">Linkedin</a></li>
                     </ol>
                 </div>
             </aside><!-- /.blog-sidebar -->
@@ -189,14 +193,6 @@
         </p>
     </footer>
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <!-- script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
-    <script src="../../assets/js/vendor/popper.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-    <script src="../../assets/js/vendor/holder.min.js"></script-->
     <script>
         Holder.addTheme('thumb', {
             bg: '#55595c',

@@ -6,17 +6,24 @@
                 <h3 class="mb-0">
                     <a class="text-dark" href="#">{{ $article->title }}</a>
                 </h3>
-                <div class="mb-1 text-muted">{{ $article->created_at }}</div>
-                <p class="card-text mb-auto">{{ $article->content }}</p>
-                <a href="#">Continue reading</a>
+                <div class="mb-1 text-muted">
+                    <script>
+                        document.write(formatearFecha("{{ $article->created_at }}"));
+                    </script>
+                </div>
+{{--                <p class="card-text mb-auto">--}}
+{{--                    @if( strlen($article->content) >= 60 )--}}
+{{--                        {{ substr($article->content, 0, 60) }} ...--}}
+{{--                        <script>--}}
+{{--                            document.write( htmlToString("{{ $article->content }}") );--}}
+{{--                        </script>--}}
+{{--                    @else--}}
+{{--                        {{ $article->content }}--}}
+{{--                    @endif--}}
+{{--                </p>--}}
+                <a href="{{ route('articleShow', $article->id) }}">Continue leyendo</a>
             </div>
             <img class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="{{ $article->title }}">
         </div>
     </div>
 @endforeach
-<div class="row mb-2">
-    <div class="offset-4 col-md-4">
-        {!! $articles->render() !!}
-    </div>
-    <div class="col-md-4"></div>
-</div>

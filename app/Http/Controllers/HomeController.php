@@ -26,7 +26,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $articles = Article::orderby('created_at', 'desc')->paginate(4);
-        return view('home', ['articles' => $articles]);
+        $articles = Article::skip(0)->take(4)->orderby('created_at', 'desc')->get();
+        return view('welcome', ['articles' => $articles]);
     }
 }

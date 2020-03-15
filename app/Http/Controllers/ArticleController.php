@@ -20,6 +20,15 @@ use Illuminate\Support\Facades\Redirect;
 class ArticleController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+    /**
      * Lista de articulos.
      *
      * @param Request $request Contiene la petición
