@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Image;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Integer;
 
 class ImagesController extends Controller
 {
@@ -20,7 +21,7 @@ class ImagesController extends Controller
      * Display a listing of the resource.
      *
      * @param Request $request Contiene la petición.
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
     public function index(Request $request)
     {
@@ -31,7 +32,7 @@ class ImagesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
     public function create()
     {
@@ -42,7 +43,7 @@ class ImagesController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
     public function store(Request $request)
     {
@@ -52,19 +53,20 @@ class ImagesController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
+     * @param  \App\Image  $image Objeto imagen con la información.
+     * @return \Illuminate\Http\Response  Regresa a la lista de imágenes.
      */
     public function show(Image $image)
     {
-        //
+        $image = Image::find($image->id);
+        return response()->redirectToRoute('images.index');
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
+     * @param  \App\Image  $image Objeto imagen con la información.
+     * @return \Illuminate\Http\Response  Regresa a la lista de imágenes.
      */
     public function edit(Image $image)
     {
@@ -75,9 +77,9 @@ class ImagesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request  $request Petición del usuario.
+     * @param  \App\Image  $image Objeto imagen con la información.
+     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
     public function update(Request $request, Image $image)
     {
@@ -100,18 +102,24 @@ class ImagesController extends Controller
         {
             flash('El archivo de la imagen no existe.')->error();
         }
+        return response()->redirectToRoute('images.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Image  $image
-     * @return \Illuminate\Http\Response
+     * @param  Integer  $id
+     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
-    public function destroy(Image $image)
+    public function destroy($id)
     {
-        $ruta = public_path() . "/img/articles/";
-        $file = file($ruta.$image->name);
-        dd($file);
+        $image = Image::find($id);
+        $image->delete();
+        $archivo = public_path() . "/img/articles/".$image->name;
+        if ( unlink($archivo) )
+            flash('La imagen fue borrada con éxito.')->warning();
+        else
+            flash('El archivo de la imagen no pudo ser borrado.')->error();
+        return response()->redirectToRoute('images.index');
     }
 }

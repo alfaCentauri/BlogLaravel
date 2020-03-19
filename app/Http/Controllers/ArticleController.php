@@ -14,6 +14,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
 use App\Http\Requests\ArticlesRequest;
 use Illuminate\Support\Facades\Redirect;
+use phpDocumentor\Reflection\Types\Integer;
+
 /**
  * Clase ArticleController controla las acciones del modulo de articulos.
  */
@@ -111,8 +113,8 @@ class ArticleController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param  int  $id Indice.
+     * @return \Illuminate\Http\Response Regresa una respuesta con una plantilla.
      */
     public function edit($id)
     {
@@ -127,7 +129,7 @@ class ArticleController extends Controller
      * Update the specified article.
      *
      * @param  Request $request Petición.
-     * @param  string  $id  Indice.
+     * @param  Integer  $id  Indice.
      *
      * @return Response|RedirectResponse Regresa una respuesta con una plantilla.
      */
@@ -149,7 +151,13 @@ class ArticleController extends Controller
         }
         return response()->redirectToRoute('articlesList');
     }
-    /****/
+    /**
+     * Method for delete a article with GET.
+     *
+     * @param  Integer  $id  Indice.
+     *
+     * @return Response|RedirectResponse Regresa una respuesta con una plantilla.
+     */
     public function delete($id)
     {
         $article = Article::find($id);
