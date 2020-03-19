@@ -33,4 +33,15 @@ class Image extends Model
     {
         return $this->belongsTo('App\Article');
     }
+    /**
+     * Local Scopes: Scope a query to only include search images
+     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param String $name Palabra a buscar.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearch($query, $name)
+    {
+        return $query->where('name', 'LIKE', "%$name%");
+    }
 }

@@ -25,7 +25,7 @@
                     </li>
                 @endforeach
             </ul>
-            {{ $article->content }} <br><hr>
+            {!! $article->content !!} <br><hr>
             Fecha: {{ $article->created_at }}
         </div>
         <div class="card-footer text-muted">

@@ -31,7 +31,7 @@ class ArticleController extends Controller
     /**
      * Lista de articulos.
      *
-     * @param Request $request Contiene la petición
+     * @param Request $request Contiene la petición.
      * @return Response Regresa una respuesta con una plantilla.
      */
     public function view(Request $request)
@@ -117,7 +117,11 @@ class ArticleController extends Controller
     public function edit($id)
     {
         $article = Article::find($id);
-        return view('admin.articles.edit')->with('article',$article);
+        $categories = Category::orderBy('name','ASC')->get();
+        $tags = Tag::pluck('name','id');
+        $my_tags = $article->tags->pluck('id')->ToArray();
+        return view('admin.articles.edit', ['article' => $article, 'categories' => $categories, 'tags' => $tags,
+            'my_tags' => $my_tags]);
     }
     /**
      * Update the specified article.
@@ -130,16 +134,27 @@ class ArticleController extends Controller
     public function update(Request $request, $id)
     {
         $article = Article::find($id);
-        if ($request->has(['title', 'content'])) {
+        if ($request->has(['title', 'texto', 'category_id', 'tags']))
+        {
             $article->title = $request->title;
             $article->content = $request->texto;
             $article->category_id = $request->category_id;
             $article->update();
-            return response()->redirectToRoute('articlesList');
+            flash('El artículo '.$article->title.' ha sido modificado con exito.')->success();
+            $article->tags()->sync($request->tags);
         }
         else
-        {//Error
-            return response()->view('error', 505);
+        {
+            flash('El artículo '.$request->title.' no pudo ser modificado.')->error();
         }
+        return response()->redirectToRoute('articlesList');
+    }
+    /****/
+    public function delete($id)
+    {
+        $article = Article::find($id);
+        $article->delete();
+        flash('El artículo '.$article->title.' ha sido borrado con exito.')->warning();
+        return response()->redirectToRoute('articlesList');
     }
 }

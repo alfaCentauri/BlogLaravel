@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/', 'HomeController@index')->name('bienvenida');
 /**
  * Ruta para el login.
  */
@@ -71,17 +71,29 @@ Route::prefix('admin')->group(function () {
          * Guarda en la app el formulario
          */
         Route::post('/store', 'ArticleController@store')->name('articleStore');
-        //
+        /**
+         * Muestra la vista del formulario de edición. Expresiones regulares para filtar el parametro id.
+        */
+        Route::get('/edit/{id?}', 'ArticleController@edit')->name('articleEdit')->where('id','[0-9]+');
+        /**
+         * Actualizar un artículo. Expresiones regulares para filtar el parametro id.
+        */
         Route::put('/update/{id?}', 'ArticleController@update')->name('articleUpdate')->where('id','[0-9]+');
-        //
-        Route::get('/delete/{id}', function ($id)  {
-            return 'Borrado de articulos.';
-        })->name('articleDelete')->where('id','[0-9]+');
+        /**
+         * Borra un artículo. Expresiones regulares para filtar el parametro id.
+        */
+        Route::get('/delete/{id?}', 'ArticleController@delete')->name('articleDelete')->where('id','[0-9]+');
     });
+    /**
+     * Rutas para el CRUD de las imagenes.
+     */
+    Route::resource('images','ImagesController');
+    /**
+     * Borrando una imagen con metodo get. Expresiones regulares para filtar el parametro id.
+     */
+    Route::get('/images/delete/{id?}', 'ImagesController@destroy')->name('images.destroy')->where('id','[0-9]+');
 });
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/', 'HomeController@index')->name('bienvenida');
