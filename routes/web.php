@@ -85,9 +85,17 @@ Route::prefix('admin')->group(function () {
         Route::get('/delete/{id?}', 'ArticleController@delete')->name('articleDelete')->where('id','[0-9]+');
     });
     /**
-     * Rutas para el CRUD de las imagenes.
+     * Ruta para la galeria de las imagenes.
      */
-    Route::resource('images','ImagesController');
+    Route::get('/images','ImagesController@index')->name('images.index');
+    /**
+     * Ruta para la editar una imagen.
+     */
+    Route::get('/images/edit/{id?}','ImagesController@edit')->name('images.edit')->where('id','[0-9]+');
+    /**
+     * Ruta para guardar una imagen actualizada.
+     */
+    Route::put('/images/update/{id?}','ImagesController@update')->name('images.update')->where('id','[0-9]+');
     /**
      * Borrando una imagen con metodo get. Expresiones regulares para filtar el parametro id.
      */

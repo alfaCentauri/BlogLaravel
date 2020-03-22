@@ -5,7 +5,7 @@
 @section('content')
     <div class="container mb-3">
         @include('components.errors')
-        {!! Form::open(['route' => ['images.update', $image], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
+        {!! Form::open(['route' => ['images.update', $image->id], 'method' => 'PUT', 'enctype' => 'multipart/form-data']) !!}
             <div class="card mt-3 mb-3">
                 <div class="card-header">
                     <div class="card-title">

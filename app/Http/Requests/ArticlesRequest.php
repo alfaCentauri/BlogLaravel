@@ -34,7 +34,7 @@ class ArticlesRequest extends FormRequest
             'title' => 'min:8|max:250|required|unique:articles',
             'category_id' => 'required',
             'texto' => 'min:50|required',
-            'imagen' => 'required',
+            'imagen' => 'image|required',
         ];
     }
     /**
@@ -51,6 +51,7 @@ class ArticlesRequest extends FormRequest
             'category_id.required' => 'La categoria es requerida',
             'texto.min' => 'El mínimo para el contenido es de 50 caracteres.',
             'texto.required' => 'El contenido es requerido',
+            'imagen.image' => 'El archivo debe ser una imagen',
             'imagen.required' => 'El archivo de la imagen es requerida',
         ];
     }

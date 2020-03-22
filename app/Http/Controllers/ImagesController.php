@@ -30,60 +30,27 @@ class ImagesController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
-     */
-    public function create()
-    {
-        return "Error 404";
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
-     */
-    public function store(Request $request)
-    {
-        return "Error 404";
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Image  $image Objeto imagen con la información.
-     * @return \Illuminate\Http\Response  Regresa a la lista de imágenes.
-     */
-    public function show(Image $image)
-    {
-        $image = Image::find($image->id);
-        return response()->redirectToRoute('images.index');
-    }
-
-    /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Image  $image Objeto imagen con la información.
+     * @param int $id   Indice de la imagen.
      * @return \Illuminate\Http\Response  Regresa a la lista de imágenes.
      */
-    public function edit(Image $image)
+    public function edit(int $id)
     {
-        $image = Image::find($image->id);
+        $image = Image::find($id);
         return view('admin.images.edit', ['image' => $image]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request Petición del usuario.
-     * @param  \App\Image  $image Objeto imagen con la información.
+     * @param \Illuminate\Http\Request $request Petición del usuario.
+     * @param Integer $id   Indice de la imagen.
      * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
-    public function update(Request $request, Image $image)
+    public function update(Request $request, $id)
     {
-        $image = Image::find($image->id);
+        $image = Image::find($id);
         if ($request->hasFile('imagen'))
         {
             $file = $request->imagen;
@@ -108,7 +75,7 @@ class ImagesController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  Integer  $id
+     * @param  Integer  $id Indice de la imagen.
      * @return \Illuminate\Http\Response Regresa a la lista de imágenes.
      */
     public function destroy($id)
