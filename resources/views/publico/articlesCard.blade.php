@@ -24,10 +24,14 @@
                 <a href="{{ route('articleShow', $article->id) }}">Continue leyendo</a>
             </div>
             @if( count($article->images) < 1)
-                <img src="{{ asset('img/articles/manzana.jpg') }}" class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="{{ $article->title }}">
+                <img src="{{ asset('img/articles/manzana.jpg') }}" class="card-img-right flex-auto d-none d-md-block"
+                     width="200px" height="250px"
+                     data-src="holder.js/200x250?theme=thumb" alt="{{ $article->title }}">
             @else
                 @foreach($article->images as $image)
-                    <img src="{{ asset('img/articles/'.$image->name) }}" class="card-img-right flex-auto d-none d-md-block" data-src="holder.js/200x250?theme=thumb" alt="{{ $article->title }}">
+                    <img src="{{ asset('img/articles/'.$image->name) }}"
+                         class="card-img-right flex-auto d-none d-md-block" width="200px" height="250px"
+                         data-src="holder.js/200x250?theme=thumb" alt="{{ $article->title }}">
                 @endforeach
             @endif
         </div>
