@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('/', 'HomeController@index')->name('bienvenida');
+Route::get('/', 'PublicController@index')->name('bienvenida');
+/**
+ * Ruta para ver las publicaciones de tecnologia.
+ */
+Route::get('/tecnologia', 'PublicController@tecnologia')->name('tecnologia');
 /**
  * Ruta para el login.
  */

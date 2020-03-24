@@ -7,7 +7,12 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Http\Requests\CategoriesRequest;
 use Illuminate\Support\Facades\Validator;
-
+/**
+ * Clase CategoriesController controla las acciones del modulo de categorias.
+ *
+ * @author Ingeniero en Computación: Ricardo Presilla.
+ * @version 1.0.
+ */
 class CategoriesController extends Controller
 {
     /**

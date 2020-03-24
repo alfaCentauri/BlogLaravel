@@ -6,6 +6,9 @@ use App\Article;
 use Illuminate\Http\Request;
 /**
  * Clase HomeController controla las acciones del módulo público.
+ *
+ * @author Ingeniero en Computación: Ricardo Presilla.
+ * @version 1.0.
  */
 class HomeController extends Controller
 {

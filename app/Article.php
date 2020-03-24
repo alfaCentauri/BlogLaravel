@@ -77,7 +77,7 @@ class Article extends Model
         ];
     }
     /**
-     * Local Scopes: Scope a query to only include search tags
+     * Local Scopes: Scope a query to only include search article.
      * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
      * @param String $title Palabra a buscar.
      *
@@ -86,5 +86,17 @@ class Article extends Model
     public function scopeSearch($query, $title)
     {
         return $query->where('title', 'LIKE', "%$title%");
+    }
+    /**
+     * Local Scopes: Scope a query to only include search article
+     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param String $title Palabra a buscar.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearchByCategory($query, $title, $category_id)
+    {
+        return $query->where('title', 'LIKE', "%$title%")
+            ->where('category_id', $category_id);
     }
 }

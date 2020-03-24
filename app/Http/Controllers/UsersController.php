@@ -8,7 +8,12 @@ use App\Http\Requests\UserRequest;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
-
+/**
+ * Clase UsersController controla las acciones del módulo usuarios.
+ *
+ * @author Ingeniero en Computación: Ricardo Presilla.
+ * @version 1.0.
+ */
 class UsersController extends Controller
 {
     /**

@@ -6,7 +6,12 @@ use App\Tag;
 use Illuminate\Http\Request;
 use App\Http\Requests\TagsRequest;
 use Illuminate\Support\Facades\Validator;
-
+/**
+ * Clase TagsController controla las acciones del módulo etiquetas.
+ *
+ * @author Ingeniero en Computación: Ricardo Presilla.
+ * @version 1.0.
+ */
 class TagsController extends Controller
 {
     /**

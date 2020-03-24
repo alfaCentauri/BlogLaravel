@@ -5,7 +5,12 @@ namespace App\Http\Controllers;
 use App\Image;
 use Illuminate\Http\Request;
 use phpDocumentor\Reflection\Types\Integer;
-
+/**
+ * Clase ImagesController controla las acciones del módulo de la galería.
+ *
+ * @author Ingeniero en Computación: Ricardo Presilla.
+ * @version 1.0.
+ */
 class ImagesController extends Controller
 {
     /**

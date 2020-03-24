@@ -18,6 +18,9 @@ use phpDocumentor\Reflection\Types\Integer;
 
 /**
  * Clase ArticleController controla las acciones del modulo de articulos.
+ *
+ * @author Ingeniero en Computación: Ricardo Presilla.
+ * @version 1.0.
  */
 class ArticleController extends Controller
 {
