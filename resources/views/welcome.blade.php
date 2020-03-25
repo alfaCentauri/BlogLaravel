@@ -71,10 +71,12 @@
                     Listado de art&iacute;culos
                 </h3>
                 @include('publico.articleDetail')
+                <!-- Buttons of Pagination -->
                 <nav class="blog-pagination">
                     <a class="btn btn-outline-primary" href="#">Anteriores</a>
                     <a class="btn btn-outline-secondary disabled" href="#">Nuevos</a>
                 </nav>
+                <!-- End Buttons of Pagination -->
             </div><!-- /.blog-main -->
 
             <aside class="col-md-4 blog-sidebar">

@@ -24,8 +24,19 @@ class PublicController extends Controller
     {
         $articles = Article::skip(0)->take(4)->orderby('created_at', 'desc')->get();
         $categories = Category::pluck('name', 'id');
-        $enlacesMenu = array();
-        $i=0;
+        $enlacesMenu = $this->reemplazarCaracteresEspeciales($categories);
+        return view('welcome', ['articles' => $articles, 'categories' => $categories, 'enlacesMenu' => $enlacesMenu]);
+    }
+
+    /**
+     * Prepara los enlaces de las categorias para ser insertados en el html. Reemplaza los acentos, las dieresis y la ñ.
+     *
+     * @param $categories Listado de categorias.
+     * @return array Regresa un arreglo con los nombres de las categorias sin acentos, ni dieresis o la letra ñ.
+     */
+    private function reemplazarCaracteresEspeciales($categories)
+    {
+        $linksDepurados = array();
         foreach ($categories as $category)
         {
             $nameCategory = strtolower( $category );
@@ -40,11 +51,10 @@ class PublicController extends Controller
             $nameCategory = str_replace( "ö", "o", $nameCategory );
             $nameCategory = str_replace( "ü", "u", $nameCategory );
             $nameCategory = str_replace( "ñ", "ni", $nameCategory );
-            $resultado = array_push($enlacesMenu, $nameCategory);
+            array_push($linksDepurados, $nameCategory);
         }
-        return view('welcome', ['articles' => $articles, 'categories' => $categories, 'enlacesMenu' => $enlacesMenu]);
+        return $linksDepurados;
     }
-
     /**
      * Show the articles of tecnologi.
      * @param Request $request Petición del usuario.
@@ -52,11 +62,14 @@ class PublicController extends Controller
      */
     public function tecnologia(Request $request)
     {
-        $arregloIds = Category::search('Tecnología');
-        if($arregloIds != null)
+        $category = Category::find(1);
+        $categories = Category::pluck('name', 'id');
+        $enlacesMenu = $this->reemplazarCaracteresEspeciales($categories);
+        if($category != null)
         {
-            $articles = Article::searchByCategory($request->search, $arregloIds)->orderby('created_at', 'desc')->paginate(6);
-            return view('welcome', ['articles' => $articles]);
+            $articles = Article::searchByCategory($request->search, $category->id)->orderby('created_at', 'desc')->paginate(6);
+            return view('publico.tecnologia', ['articles' => $articles, 'categories' => $categories,
+                'enlacesMenu' => $enlacesMenu]);
         }
         else
             return Response::HTTP_INTERNAL_SERVER_ERROR; //"<h1>Error 505</h1>";
