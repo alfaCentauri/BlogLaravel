@@ -177,8 +177,7 @@ return [
         /*
          * Proveedores de servicios personales
          */
-        //Collective\Html\HtmlServiceProvider::class,
-        //Cviebrock\EloquentSluggable\ServiceProvider::class,
+        App\Providers\MenuServiceProviders::class,
     ],
 
     /*
