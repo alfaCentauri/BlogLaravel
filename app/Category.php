@@ -40,4 +40,15 @@ class Category extends Model
     {
         return $query->where('name', 'LIKE', "%$name%");
     }
+    /**
+     * Local Scopes: Scope a query to only include search category
+     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param String $name Nombre a buscar.
+     *
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeSearchByName($query, $name)
+    {
+        return $query->where('name', '=', "$name");
+    }
 }

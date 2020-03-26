@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use App\Article;
 use App\Category;
 use Illuminate\Http\Request;
@@ -25,20 +26,29 @@ class PublicController extends Controller
         $articles = Article::skip(0)->take(4)->orderby('created_at', 'desc')->get();
         return view('welcome', ['articles' => $articles, ]);
     }
+
     /**
      * Show the articles of tecnologi.
-     * @param Request $request Petición del usuario.
+     *
+     * @param string  $name Nombre de la categoría.
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Return the view.
      */
-    public function tecnologia(Request $request)
+    public function searchCategory(string $name)
     {
-        $category = Category::find(1);
-        if($category != null)
-        {
-            $articles = Article::searchByCategory($request->search, $category->id)->orderby('created_at', 'desc')->paginate(4);
-            return view('publico.tecnologia', ['articles' => $articles, ]);
-        }
-        else
-            return Response::HTTP_INTERNAL_SERVER_ERROR;
+        $category = Category::SearchByName($name)->first();
+        $articles =  $category->articles()->paginate(4);
+        return view('publico.category', ['articles' => $articles, ]);
+    }
+    /**
+     * Show the articles of tecnologi.
+     *
+     * @param string  $name Nombre del tag.
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Return the view.
+     */
+    public function searchTag(string $name)
+    {
+        $tag = Tag::SearchbyName($name)->first();
+        $articles =  $tag->articles()->paginate(4);
+        return view('publico.category', ['articles' => $articles, ]);
     }
 }

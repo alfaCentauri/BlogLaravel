@@ -19,10 +19,11 @@ class MenuComposer
      */
     public function compose(View $view)
     {
-        $categories = Category::pluck('name', 'id');
-        $enlacesMenu = $this->reemplazarCaracteresEspeciales($categories);
-        $view->with('categories', $categories)
-            ->with('enlacesMenu', $enlacesMenu);
+        $categories = Category::orderBy('name', 'ASC')->get();
+//        $categories = Category::pluck('name', 'id');
+//        $enlacesMenu = $this->reemplazarCaracteresEspeciales($categories);
+        $view->with('categories', $categories);
+//            ->with('enlacesMenu', $enlacesMenu);
     }
     /**
      * Prepara los enlaces de las categorias para ser insertados en el html. Reemplaza los acentos, las dieresis y la ñ.

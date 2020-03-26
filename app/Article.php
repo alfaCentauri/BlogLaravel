@@ -78,7 +78,7 @@ class Article extends Model
     }
     /**
      * Local Scopes: Scope a query to only include search article.
-     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param \Illuminate\Database\Eloquent\Builder  $query Query.
      * @param String $title Palabra a buscar.
      *
      * @return \Illuminate\Database\Eloquent\Builder
@@ -89,8 +89,9 @@ class Article extends Model
     }
     /**
      * Local Scopes: Scope a query to only include search article
-     * @param  \Illuminate\Database\Eloquent\Builder  $query Query.
+     * @param \Illuminate\Database\Eloquent\Builder  $query Query.
      * @param String $title Palabra a buscar.
+     * @param String $category_id Indice de la categoria a buscar.
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */

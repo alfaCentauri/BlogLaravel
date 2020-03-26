@@ -29,6 +29,6 @@ class MenuServiceProviders extends ServiceProvider
      */
     public function boot()
     {
-        View::composer(['welcome', 'publico.tecnologia'], 'App\Http\ViewComposers\MenuComposer');
+        View::composer(['welcome', 'publico.category'], 'App\Http\ViewComposers\MenuComposer');
     }
 }

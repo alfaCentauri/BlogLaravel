@@ -12,9 +12,13 @@
 */
 Route::get('/', 'PublicController@index')->name('bienvenida');
 /**
- * Ruta para ver las publicaciones de tecnologia.
+ * Ruta para ver las publicaciones por categoria.
  */
-Route::get('/tecnologia', 'PublicController@tecnologia')->name('tecnologia');
+Route::get('/categories/{name}', 'PublicController@searchCategory')->name('searchCategory');
+/**
+ * Ruta para ver las publicaciones por etiqueta.
+ */
+Route::get('/tags/{name}', 'PublicController@searchTag')->name('searchTag');
 /**
  * Ruta para el login.
  */
