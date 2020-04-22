@@ -2,18 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Image;
-use App\Tag;
 use App\Article;
 use App\Category;
-use Illuminate\Http\Testing\File;
-use Illuminate\View\View;
+use App\Http\Requests\ArticlesRequest;
+use App\Image;
+use App\Tag;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use App\Http\Requests\ArticlesRequest;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\View\View;
 use phpDocumentor\Reflection\Types\Integer;
 
 /**
@@ -44,11 +43,13 @@ class ArticleController extends Controller
         $articles = Article::search($request->search)->orderby('created_at', 'desc')->paginate(6);
         return response()->view('admin.articles.view', ['articles' => $articles]);
     }
+
     /**
      * Muestra un articulo con todos sus detalles.
      *
-     * @return View Regresa una vista detallada del articulo.
-    */
+     * @param int $id Index.
+     * @return View|String Regresa una vista detallada del articulo.
+     */
     public function show($id=0)
     {
         $article = Article::find($id);
@@ -60,7 +61,7 @@ class ArticleController extends Controller
     /**
      * Crea un formulario para generar un nuevo articulo.
      *
-     * @return \Illuminate\Contracts\View\Factory|View
+     * @return Factory|View Return template with form for create an article.
     */
     public function create()
     {
@@ -73,7 +74,7 @@ class ArticleController extends Controller
      * Almacena en la base de datos el articulo creado.
      *
      * @param  ArticlesRequest  $request
-     * @return \Illuminate\Http\Response Redirige la vista al listado de articulos.
+     * @return Response|RedirectResponse Redirige la vista al listado de articulos.
     */
     public function store(ArticlesRequest $request)
     {
@@ -117,7 +118,7 @@ class ArticleController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  int  $id Indice.
-     * @return \Illuminate\Http\Response Regresa una respuesta con una plantilla.
+     * @return Factory|View Regresa una respuesta con una plantilla.
      */
     public function edit($id)
     {

@@ -2,24 +2,25 @@
 
 namespace App\Http\Controllers;
 
-use App\Tag;
 use App\Article;
 use App\Category;
-use Illuminate\Http\Request;
-use Illuminate\Http\Response;
+use App\Tag;
+use Illuminate\Contracts\Support\Renderable;
+use Illuminate\Contracts\View\Factory;
+use Illuminate\View\View;
 
 /**
  * Clase PublicController controla las acciones del módulo público.
  *
  * @author Ingeniero en Computación: Ricardo Presilla.
- * @version 1.0.
+ * @version 1.1.
  */
 class PublicController extends Controller
 {
     /**
      * Show the application dashboard.
      *
-     * @return \Illuminate\Contracts\Support\Renderable
+     * @return Renderable
      */
     public function index()
     {
@@ -31,7 +32,7 @@ class PublicController extends Controller
      * Show the articles of tecnologi.
      *
      * @param string  $name Nombre de la categoría.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Return the view.
+     * @return Factory|View Return the view.
      */
     public function searchCategory(string $name)
     {
@@ -43,7 +44,7 @@ class PublicController extends Controller
      * Show the articles of tecnologi.
      *
      * @param string  $name Nombre del tag.
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View Return the view.
+     * @return Factory|View Return the view.
      */
     public function searchTag(string $name)
     {
