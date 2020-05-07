@@ -29,7 +29,7 @@ class PublicController extends Controller
     }
 
     /**
-     * Show the articles of tecnologi.
+     * Show the articles for category.
      *
      * @param string  $name Nombre de la categoría.
      * @return Factory|View Return the view.
@@ -38,10 +38,11 @@ class PublicController extends Controller
     {
         $category = Category::SearchByName($name)->first();
         $articles =  $category->articles()->paginate(4);
-        return view('publico.category', ['articles' => $articles, ]);
+        return view('publico.category', ['articles' => $articles, 'nameCategory' => $name]);
     }
+
     /**
-     * Show the articles of tecnologi.
+     * Show the articles for tag.
      *
      * @param string  $name Nombre del tag.
      * @return Factory|View Return the view.
@@ -50,6 +51,6 @@ class PublicController extends Controller
     {
         $tag = Tag::SearchbyName($name)->first();
         $articles =  $tag->articles()->paginate(4);
-        return view('publico.category', ['articles' => $articles, ]);
+        return view('publico.tag', ['articles' => $articles, 'nameTag' => $name]);
     }
 }
