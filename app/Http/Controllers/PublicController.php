@@ -20,7 +20,7 @@ class PublicController extends Controller
     /**
      * Show the application dashboard.
      *
-     * @return Renderable
+     * @return View Return the view.
      */
     public function index()
     {
@@ -49,7 +49,7 @@ class PublicController extends Controller
      */
     public function searchTag(string $name)
     {
-        $tag = Tag::SearchbyName($name)->first();
+        $tag = Tag::SearchByName($name)->first();
         $articles =  $tag->articles()->paginate(4);
         return view('publico.tag', ['articles' => $articles, 'nameTag' => $name]);
     }
