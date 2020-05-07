@@ -38,7 +38,7 @@ class Tag extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearch($query, String $name)
+    public function scopeSearch($query, $name)
     {
         return $query->where('name', 'LIKE', "%$name%");
     }
@@ -49,7 +49,7 @@ class Tag extends Model
      *
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function scopeSearchByName($query, String $name)
+    public function scopeSearchByName($query, $name)
     {
         return $query->where('name', '=', "$name");
     }
